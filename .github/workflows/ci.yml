@@ -1,0 +1,29 @@
+name: CI
+
+on: [push, pull_request]
+
+# trigger action: this will be run by Github Actions
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3   # get your repo code
+  
+    - name: Install dependencies
+      run: |
+        sudo apt update
+        sudo apt install python3-setuptools
+        sudo apt install pipx
+        pipx install norminette
+        pipx ensurepath
+
+    - name: Compile
+      run: make                   # or gcc main.c -o program
+
+    - name: Run program
+      run: ./cub3d                # runs your compiled binary
+
+    - name: Run norminette
+      run: norminette src/
