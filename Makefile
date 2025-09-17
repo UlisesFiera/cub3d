@@ -8,7 +8,11 @@ STD_FLAGS	= -Wall -Wextra -Werror
 
 MLX_FLAGS	= -Lminilibx/minilibx-linux -lmlx_Linux -lX11 -lXext
 
-SRCS		= src/main/main.c
+SRCS		= 	src/main/main.c \
+				src/window/window_manage \
+				src/main/free_hand \
+				src/main/error_hand \
+				src/main/smalloc \
 
 OBJS		= ${SRCS:.c=.o}
 
