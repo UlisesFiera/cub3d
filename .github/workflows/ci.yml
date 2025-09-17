@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3   # get your repo code
+    - uses: actions/checkout@v3   # get repo code
   
     - name: Install dependencies
       run: |
@@ -21,10 +21,10 @@ jobs:
         sudo apt-get install gcc make xorg libxext-dev libbsd-dev
 
     - name: Compile
-      run: make                   # or gcc main.c -o program
+      run: make
 
     - name: Run program
-      run: ./cub3d                # runs your compiled binary
+      run: ./cub3d test_map.ber   # runs the compiled binary
 
     - name: Run norminette
       run: norminette src/
