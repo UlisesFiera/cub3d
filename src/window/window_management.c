@@ -1,33 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   window_management.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/17 16:25:09 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/17 18:38:20 by ulfernan         ###   ########.fr       */
+/*   Created: 2025/09/17 18:15:30 by ulfernan          #+#    #+#             */
+/*   Updated: 2025/09/17 18:15:59 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../main/cub3d.h"
 
-int	main(int argc, char **argv)
+void    window_management()
 {
-	t_mlx_data	mlx;
-
-	(void)argv;
-	if (argc != 2)
-	{
-		printf("argc error\n");
-		return (1);
-	}
-	if (mlx.id = mlx_init())
-	{
-		printf("mlx failed on init\n");
-		return (1);
-	};
-	window_management(&mlx);
-	mlx_loop(mlx.id);
-	return (0);
+    
 }
