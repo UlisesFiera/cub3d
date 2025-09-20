@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 18:15:30 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/20 10:21:32 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/09/20 15:13:06 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	window_manage(t_mlx_data *mlx)
 {
-	(void)mlx;
+	free_mlx(mlx);
 	exit(1);
 }

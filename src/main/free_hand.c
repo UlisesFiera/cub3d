@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 18:43:26 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/20 12:04:45 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/09/20 15:45:48 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,6 @@ void	free_graph(t_graphics *graph)
 
 void	free_mlx(t_mlx_data *mlx)
 {
-	if (mlx->id)
-		free(mlx->id);
-	mlx->id = NULL;
-	if (mlx->win)
-		free(mlx->win);
-	mlx->win = NULL;
 	if (mlx->map)
 	{
 		free_map(mlx->map);
@@ -55,7 +49,13 @@ void	free_mlx(t_mlx_data *mlx)
 		free(mlx->graph);
 	}
 	mlx->graph = NULL;
-	if (mlx)
-		free(mlx);
-	mlx = NULL;
+	if (mlx->win)
+		mlx_destroy_window(mlx->id, mlx->win);
+	mlx->win = NULL;
+	if (mlx->id)
+	{
+		mlx_destroy_display(mlx->id);
+		free(mlx->id);
+	}
+	mlx->id = NULL;
 }

@@ -62,3 +62,9 @@ Github workflow
 	After review, test and aproval, we rebase if required, and then merge with the <develop> branch.
 
 		- "rebase" puts our commit history on top of the target branch in case we are behind it.
+
+Valgrind
+
+	Use this command:
+
+	valgrind --suppressions=mlx.supp --show-leak-kinds=all --leak-check=full --track-fds=yes --trace-children=yes --track-origins=yes ./cub3d map_test.berclear 
