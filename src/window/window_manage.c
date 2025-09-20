@@ -6,13 +6,13 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 18:15:30 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/20 15:48:41 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/09/20 16:27:00 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	window_manage(t_mlx_data *mlx)
+void	window_manage(t_cub3d_data *mlx)
 {
 	(void)mlx;
 	return ;

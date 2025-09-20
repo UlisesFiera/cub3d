@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 18:43:26 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/20 15:45:48 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/09/20 16:49:08 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@ void	free_map(t_map_data *map)
 	if (map->map)
 		free(map->map);
 	map->map = NULL;
+	if (map->map_fd != INULL)
+		close(map->map_fd);
+	map->map_fd = INULL;
 	if (map->map_height)
 		free(map->map_height);
 	map->map_height = NULL;
@@ -35,27 +38,27 @@ void	free_graph(t_graphics *graph)
 	graph->y_size = NULL;
 }
 
-void	free_mlx(t_mlx_data *mlx)
+void	free_mlx(t_cub3d_data *data)
 {
-	if (mlx->map)
+	if (data->map_data)
 	{
-		free_map(mlx->map);
-		free(mlx->map);
+		free_map(data->map_data);
+		free(data->map_data);
 	}
-	mlx->map = NULL;
-	if (mlx->graph)
+	data->map_data = NULL;
+	if (data->graph_data)
 	{
-		free_graph(mlx->graph);
-		free(mlx->graph);
+		free_graph(data->graph_data);
+		free(data->graph_data);
 	}
-	mlx->graph = NULL;
-	if (mlx->win)
-		mlx_destroy_window(mlx->id, mlx->win);
-	mlx->win = NULL;
-	if (mlx->id)
+	data->graph_data = NULL;
+	if (data->win)
+		mlx_destroy_window(data->mlx_id, data->win);
+	data->win = NULL;
+	if (data->mlx_id)
 	{
-		mlx_destroy_display(mlx->id);
-		free(mlx->id);
+		mlx_destroy_display(data->mlx_id);
+		free(data->mlx_id);
 	}
-	mlx->id = NULL;
+	data->mlx_id = NULL;
 }

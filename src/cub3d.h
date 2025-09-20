@@ -6,16 +6,21 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 16:34:44 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/20 10:30:10 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/09/20 17:02:47 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 
 # define CUB3D_H
+
 # define RED_DOT "\033[31m●\033[0m"
 # define GREEN_DOT "\033[32m●\033[0m"
 # define YELLOW_DOT "\033[33m●\033[0m"
+
+# define INULL -918273645
+
+# define E_OPEN 1
 
 # include "libft.h"
 # include "mlx.h"
@@ -31,6 +36,7 @@
 typedef struct s_map_data
 {
 	char		**map;
+	int			map_fd;
 	void		*map_height;
 	void		*map_width;
 }				t_map_data;
@@ -41,22 +47,30 @@ typedef struct s_graphics
 	void		*y_size;
 }				t_graphics;
 
-typedef struct s_mlx_data
+typedef struct s_cub3d_data
 {
-	void		*id;
+	void		*mlx_id;
 	void		*win;
-	t_map_data	*map;
-	t_graphics	*graph;
-}				t_mlx_data;
+	t_map_data	*map_data;
+	t_graphics	*graph_data;
+}				t_cub3d_data;
 
 // main functions
 
-void	exiterr(char *error_text, t_mlx_data *mlx, int errcode);
-void	free_mlx(t_mlx_data *mlx);
+void	free_mlx(t_cub3d_data *data);
 void	*smalloc(size_t bytes);
 
 // window
 
-void	window_manage(t_mlx_data *mlx);
+void	window_manage(t_cub3d_data *data);
+
+// map
+
+void	parse_map(t_cub3d_data *data, char **argv);
+
+//error
+
+void	exitperror(t_cub3d_data *data, int errcode);
+void	exiterr(char *error_text, t_cub3d_data *data, int errcode);
 
 #endif

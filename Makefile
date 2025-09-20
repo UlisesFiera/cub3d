@@ -7,13 +7,14 @@ MLX			= 	./minilibx/minilibx-linux/libmlx_Linux.a
 
 STD_FLAGS	= 	-Wall -Wextra -Werror
 MLX_FLAGS	= 	-Lminilibx/minilibx-linux -lmlx_Linux -lX11 -lXext	# flags for linking mlx deps
-INC_FLAGS   = 	-I./libft -I./minilibx/minilibx-linux -I./src/main	# flags for linking cub3d, lbft and mlx headers
+INC_FLAGS   = 	-I./libft -I./minilibx/minilibx-linux -I./src		# flags for linking cub3d, lbft and mlx headers
 
 SRCS		= 	src/main/main.c \
-				src/window/window_manage.c \
 				src/main/free_hand.c \
 				src/main/error_hand.c \
 				src/main/smalloc.c \
+				src/window/window_manage.c \
+				src/map/parse_map.c \
 
 OBJDIR		= 	build
 OBJS		= 	$(patsubst src/%.c,${OBJDIR}/%.o,${SRCS})
