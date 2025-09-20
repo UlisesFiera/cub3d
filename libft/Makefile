@@ -28,23 +28,25 @@ BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(AR) rcs $(NAME) $(OBJS)
+	@$(AR) rcs $(NAME) $(OBJS)
+	@echo compiling libft...
 
 bonus: $(OBJS) $(BONUS_OBJS)
-	$(AR) rcs $(NAME) $(OBJS) $(BONUS_OBJS)
+	@$(AR) rcs $(NAME) $(OBJS) $(BONUS_OBJS)
+	@echo compiling libft...
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 
 clean:
 	@rm -f $(OBJS) $(BONUS_OBJS)
-	@echo "removing libft .o files..."
+	@echo "removing libft ".o" files..."
 
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "removing libft .a file..."
+	@echo "removing libft ".a" files..."
 
 re: fclean all
 

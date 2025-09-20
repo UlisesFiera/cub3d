@@ -6,40 +6,56 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 18:43:26 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/17 19:56:49 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/09/20 12:04:45 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./cub3d.h"
+#include "cub3d.h"
 
 void	free_map(t_map_data *map)
 {
-	free(map->map);
+	if (map->map)
+		free(map->map);
 	map->map = NULL;
-	free(map->map_height);
+	if (map->map_height)
+		free(map->map_height);
 	map->map_height = NULL;
-	free(map->map_width);
+	if (map->map_width)
+		free(map->map_width);
 	map->map_width = NULL;
 }
 
 void	free_graph(t_graphics *graph)
 {
-	free(graph->x_size);
+	if (graph->x_size)
+		free(graph->x_size);
 	graph->x_size = NULL;
-	free(graph->y_size);
+	if (graph->y_size)
+		free(graph->y_size);
 	graph->y_size = NULL;
 }
 
 void	free_mlx(t_mlx_data *mlx)
 {
-	free(mlx->id);
+	if (mlx->id)
+		free(mlx->id);
 	mlx->id = NULL;
-	free(mlx->win);
+	if (mlx->win)
+		free(mlx->win);
 	mlx->win = NULL;
-	free_map(mlx->map);
+	if (mlx->map)
+	{
+		free_map(mlx->map);
+		free(mlx->map);
+	}
 	mlx->map = NULL;
-	free_graph(mlx->graph);
+	if (mlx->graph)
+	{
+		free_graph(mlx->graph);
+		free(mlx->graph);
+	}
 	mlx->graph = NULL;
-	free(mlx);
+	if (mlx)
+		free(mlx);
 	mlx = NULL;
 }

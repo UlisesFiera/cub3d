@@ -1,51 +1,72 @@
-NAME		= cub3d
+NAME		= 	cub3d
 
-CC			= cc
+CC			= 	cc
 
-LIBF		= ./libft/libft.a
+LIBFT		= 	./libft/libft.a
+MLX			= 	./minilibx/minilibx-linux/libmlx_Linux.a
 
-STD_FLAGS	= -Wall -Wextra -Werror
-
-MLX_FLAGS	= -Lminilibx/minilibx-linux -lmlx_Linux -lX11 -lXext
+STD_FLAGS	= 	-Wall -Wextra -Werror
+MLX_FLAGS	= 	-Lminilibx/minilibx-linux -lmlx_Linux -lX11 -lXext	# flags for linking mlx deps
+INC_FLAGS   = 	-I./libft -I./minilibx/minilibx-linux -I./src/main	# flags for linking cub3d, lbft and mlx headers
 
 SRCS		= 	src/main/main.c \
-				src/window/window_manage \
-				src/main/free_hand \
-				src/main/error_hand \
-				src/main/smalloc \
+				src/window/window_manage.c \
+				src/main/free_hand.c \
+				src/main/error_hand.c \
+				src/main/smalloc.c \
 
-OBJS		= ${SRCS:.c=.o}
+OBJDIR		= 	build
+OBJS		= 	$(patsubst src/%.c,${OBJDIR}/%.o,${SRCS})
 
-REMOVE		= rm -f ${OBJS}
+REMOVE		= 	rm -f ${OBJS}
 
-all: deps ${LIBFT} ${NAME}
+RED_DOT		= 	"\033[31m[●]\033[0m"
+GREEN_DOT	= 	"\033[32m[●]\033[0m"
+YELLOW_DOT	= 	"\033[33m[●]\033[0m"
 
-# deps is a series of commands to ensure the dependencies neccessary to use the mlx are installed
+all: ${MLX} ${LIBFT} ${NAME}
+
+# the MLX rule is a series of commands to ensure the dependencies neccessary to use the mlx are installed
 # still linux compatible only
 
-deps:
-	@which gcc > /dev/null || { echo "Installing gcc..."; sudo apt-get install -y gcc || echo "Failed to install gcc"; }
-	@which make > /dev/null || { echo "Installing make..."; sudo apt-get install -y make || echo "Failed to install make"; }
-	@dpkg -s xorg >/dev/null 2>&1 || { echo "Installing xorg..."; sudo apt-get install -y xorg || echo "Failed to install xorg"; }
-	@dpkg -s libxext-dev >/dev/null 2>&1 || { echo "Installing libxext-dev..."; sudo apt-get install -y libxext-dev || echo "Failed to install libxext-dev"; }
-	@dpkg -s libbsd-dev >/dev/null 2>&1 || { echo "Installing libbsd-dev..."; sudo apt-get install -y libbsd-dev || echo "Failed to install libbsd-dev"; }
-	@make -C ./minilibx/minilibx-linux > /dev/null && echo compiling minilibx...
+${MLX}:
+	@make --no-print-directory -C ./minilibx/minilibx-linux > /dev/null && printf "\r\033[33m[●]\033[0m compiling and installing minilibx deps...\n"
+	@which gcc > /dev/null || { printf "\r\033[33m[●]\033[0m installing gcc...\n"; sudo apt-get install -y gcc || printf "\r\033[31m[●]\033[0m failed to install gcc\n"; }
+	@which make > /dev/null || { printf "\r\033[33m[●]\033[0m installing make...\n"; sudo apt-get install -y make || printf "\r\033[31m[●]\033[0m failed to install make\n"; }
+	@dpkg -s xorg >/dev/null 2>&1 || { printf "\r\033[33m[●]\033[0m installing xorg...\n"; sudo apt-get install -y xorg || printf "\r\033[31m[●]\033[0m failed to install xorg\n"; }
+	@dpkg -s libxext-dev >/dev/null 2>&1 || { printf "\r\033[33m[●]\033[0m installing libxext-dev...\n"; sudo apt-get install -y libxext-dev || printf "\r\033[31m[●]\033[0m failed to install libxext-dev\n"; }
+	@dpkg -s libbsd-dev >/dev/null 2>&1 || { printf "\r\033[33m[●]\033[0m installing libbsd-dev...\n"; sudo apt-get install -y libbsd-dev || printf "\r\033[31m[●]\033[0m failed to install libbsd-dev\n"; }
+	@make --no-print-directory -C ./minilibx/minilibx-linux > /dev/null && printf "\r\033[32m[●]\033[0m compiling and installing minilibx deps...\n"
 
-${NAME}:
-	@${CC} ${SRCS} ${LIBFT} ${STD_FLAGS} ${MLX_FLAGS} -o ${NAME}
-	@echo compiling cub3d...
+$(OBJDIR)/%.o: src/%.c
+	@printf "\r\033[33m[●]\033[0m compiling cub3d..."
+	@mkdir -p $(dir $@)
+	@${CC} ${STD_FLAGS} ${INC_FLAGS} -c $< -o $@ \
+	|| { printf "\n\033[31m[●]\033[0m Error: cub3d compilation failed!\n"; exit 1; }
 
-${LIBFT}:				
-	make bonus -C ./libft
+${NAME}: ${OBJS}
+	@${CC} ${OBJS} ${STD_FLAGS} ${MLX_FLAGS} ${LIBFT} -o ${NAME} \
+	|| { printf "\n\033[31m[●]\033[0m Error: cub3d compilation failed!\n"; exit 1; }
+	@printf "\r\033[32m[●]\033[0m compiling cub3d...\n"
 
-clean:					
+${LIBFT}:
+	@printf "\r\033[33m[●]\033[0m compiling and linking libft..."	
+	@make --no-print-directory bonus -C ./libft > /dev/null 2>&1  \
+	|| { printf "\n\033[31m[●]\033[0m Error: libft installation failed!\n"; exit 1; }
+	@printf "\r\033[32m[●]\033[0m compiling and linking libft...\n"	
+
+clean:
+	@printf "\r\033[33m[●]\033[0m removing .o files..."		
 	@${REMOVE}
-	@echo "removing cub3d .o files..."
-	@make clean -C ./libft
+	@make --no-print-directory clean -C ./libft clean > /dev/null 2>&1
+	@printf "\r\033[32m[●]\033[0m removing .o files...\n"
 
 fclean:	clean
+	@printf "\r\033[33m[●]\033[0m removing executables..."
 	@rm -f cub3d
-	@echo "removing cub3d executable..."
+	@rm -rf build
+	@make --no-print-directory fclean -C ./libft fclean > /dev/null 2>&1
+	@printf "\r\033[32m[●]\033[0m removing executables...\n"
 						
 re:	fclean all
 

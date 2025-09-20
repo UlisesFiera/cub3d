@@ -1,4 +1,0 @@
-- window_man
-- free handler
-- init
-- s_malloc
