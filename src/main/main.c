@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 16:25:09 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/20 15:44:18 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/09/20 15:48:22 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	main(int argc, char **argv)
 	mlx->id = mlx_init();
 	if (!mlx->id)
 		exiterr("error: mlx failed on init", mlx, 201);
-	//window_manage(mlx);
+	window_manage(mlx);
 	mlx_loop(mlx->id);
 	free_mlx(mlx);
 	free(mlx);
