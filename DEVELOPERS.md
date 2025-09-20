@@ -67,4 +67,4 @@ Valgrind
 
 	Use this command:
 
-	valgrind --suppressions=mlx.supp --show-leak-kinds=all --leak-check=full --track-fds=yes --trace-children=yes --track-origins=yes ./cub3d map_test.berclear 
+	valgrind --suppressions=mlx.supp --show-leak-kinds=all --leak-check=full --track-fds=yes --trace-children=yes --track-origins=yes ./cub3d map_test.ber
