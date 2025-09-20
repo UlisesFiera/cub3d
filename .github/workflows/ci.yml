@@ -24,7 +24,7 @@ jobs:
       run: make
 
     - name: Run program
-      run: ./cub3d test_map.ber   # runs the compiled binary
+      run: ./cub3d map_test.ber   # runs the compiled binary
 
     - name: Run norminette
       run: norminette src/
