@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 16:25:09 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/20 16:49:06 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/09/20 18:24:19 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,18 @@ void	init(int argc, char **argv, t_cub3d_data *data)
 	data->mlx_id = NULL;
 	data->win = NULL;
 	data->map_data = smalloc(sizeof(t_map_data));
-	data->map_data->map_fd = INULL;
 	data->map_data->map = NULL;
-	data->map_data->map_height = NULL;
-	data->map_data->map_width = NULL;
+	data->map_data->map_arg = NULL;
+	data->map_data->map_fd = INULL;
+	data->map_data->map_height = INULL;
+	data->map_data->map_width = INULL;
 	data->graph_data = smalloc(sizeof(t_graphics));
-	data->graph_data->x_size = NULL;
-	data->graph_data->y_size = NULL;
+	data->graph_data->x_size = INULL;
+	data->graph_data->y_size = INULL;
 	if (argc != 2)
 		exiterr("error: introduce 1 .ber map file as an argument", data, 1);
 	parse_map(data, argv);
+	graphic_init(data);
 }
 
 int	main(int argc, char **argv)

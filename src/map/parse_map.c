@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 16:07:08 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/20 17:41:16 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/09/20 18:26:39 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,13 @@ char	**alloc_map(t_cub3d_data *data)
 	return (map);
 }
 
-char	**process_map(t_cub3d_data *data, char **argv)
+char	**process_map(t_cub3d_data *data)
 {
 	char	**map;
 	int		i;
 
 	map = alloc_map(data);
-	close(data->map_data->map_fd);
-	data->map_data->map_fd = open(argv[1], O_RDONLY);
-	if (data->map_data->map_fd == -1)
-		exitperror(data, E_OPEN);
+	reset_fd_cursor(data);
 	i = 0;
 	while (1)
 	{
@@ -61,10 +58,11 @@ char	**process_map(t_cub3d_data *data, char **argv)
 
 void	parse_map(t_cub3d_data *data, char **argv)
 {
-	data->map_data->map_fd = open(argv[1], O_RDONLY);
+	data->map_data->map_arg = argv[1];
+	data->map_data->map_fd = open(data->map_data->map_arg, O_RDONLY);
 	if (data->map_data->map_fd == -1)
 		exitperror(data, E_OPEN);
-	data->map_data->map = process_map(data, argv);
+	data->map_data->map = process_map(data);
 	if (!data->map_data->map)
 		exiterr("error: couldn't read/empty map", data, 301);
 }

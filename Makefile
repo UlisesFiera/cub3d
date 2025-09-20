@@ -14,7 +14,11 @@ SRCS		= 	src/main/main.c \
 				src/main/error_hand.c \
 				src/main/smalloc.c \
 				src/window/window_manage.c \
+				src/window/window_size.c \
 				src/map/parse_map.c \
+				src/graphics/graphic_init.c \
+				src/utils/reset_fd_cursor.c \
+				src/utils/last_char.c \
 
 OBJDIR		= 	build
 OBJS		= 	$(patsubst src/%.c,${OBJDIR}/%.o,${SRCS})

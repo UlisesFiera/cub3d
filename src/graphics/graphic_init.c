@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   window_manage.c                                    :+:      :+:    :+:   */
+/*   graphic_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/17 18:15:30 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/20 18:46:27 by ulfernan         ###   ########.fr       */
+/*   Created: 2025/09/20 17:55:30 by ulfernan          #+#    #+#             */
+/*   Updated: 2025/09/20 18:45:25 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	window_manage(t_cub3d_data *data)
+void	graphic_init(t_cub3d_data *data)
 {
-	window_size(data);
-	data->win = mlx_new_window(data->mlx_id,
-			(data->map_data->map_width * data->graph_data->x_size),
-			(data->map_data->map_height * data->graph_data->y_size), "./cub3d");
-	return ;
+	data->graph_data->x_size = 100;
+	data->graph_data->y_size = 100;
 }

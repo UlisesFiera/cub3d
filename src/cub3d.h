@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 16:34:44 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/20 17:02:47 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/09/20 18:36:03 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,17 @@
 
 typedef struct s_map_data
 {
+	char		*map_arg;
 	char		**map;
 	int			map_fd;
-	void		*map_height;
-	void		*map_width;
+	int			map_height;
+	int			map_width;
 }				t_map_data;
 
 typedef struct s_graphics
 {
-	void		*x_size;
-	void		*y_size;
+	int			x_size;
+	int			y_size;
 }				t_graphics;
 
 typedef struct s_cub3d_data
@@ -63,14 +64,24 @@ void	*smalloc(size_t bytes);
 // window
 
 void	window_manage(t_cub3d_data *data);
+void	window_size(t_cub3d_data *data);
 
 // map
 
 void	parse_map(t_cub3d_data *data, char **argv);
 
-//error
+// error
 
 void	exitperror(t_cub3d_data *data, int errcode);
 void	exiterr(char *error_text, t_cub3d_data *data, int errcode);
+
+// graphic
+
+void	graphic_init(t_cub3d_data *data);
+
+// utils
+
+void	reset_fd_cursor(t_cub3d_data *data);
+char	last_char(char *string);
 
 #endif

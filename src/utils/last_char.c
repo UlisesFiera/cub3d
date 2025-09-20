@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   window_manage.c                                    :+:      :+:    :+:   */
+/*   last_char.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/17 18:15:30 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/20 18:46:27 by ulfernan         ###   ########.fr       */
+/*   Created: 2025/09/20 18:32:45 by ulfernan          #+#    #+#             */
+/*   Updated: 2025/09/20 18:38:44 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	window_manage(t_cub3d_data *data)
+char	last_char(char *string)
 {
-	window_size(data);
-	data->win = mlx_new_window(data->mlx_id,
-			(data->map_data->map_width * data->graph_data->x_size),
-			(data->map_data->map_height * data->graph_data->y_size), "./cub3d");
-	return ;
+	int	i;
+
+	i = 0;
+	if (!string || !string[i])
+		return ('\0');
+	while (string[i])
+		i++;
+	if (string[i] == '\0')
+		i--;
+	return (string[i]);
 }
