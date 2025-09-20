@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 18:43:26 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/20 16:49:08 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/09/20 17:36:53 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,15 @@
 
 void	free_map(t_map_data *map)
 {
+	int	i;
+
 	if (map->map)
+	{
+		i = 0;
+		while (map->map[i])
+			free(map->map[i++]);
 		free(map->map);
+	}
 	map->map = NULL;
 	if (map->map_fd != INULL)
 		close(map->map_fd);

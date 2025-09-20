@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 16:07:08 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/20 17:25:45 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/09/20 17:41:16 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,17 @@ char	**alloc_map(t_cub3d_data *data)
 	{
 		reader = get_next_line(data->map_data->map_fd);
 		if (reader)
+		{
 			count++;
+			free(reader);
+		}
 		else
 			break ;
 	}
 	if (count == 0)
 		return (NULL);
-	map = smalloc(sizeof(char *) * count);
+	map = smalloc(sizeof(char *) * (count + 1));
+	map[count] = NULL;
 	return (map);
 }
 
