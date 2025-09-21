@@ -63,6 +63,8 @@ Github workflow
 
 		- "rebase" puts our commit history on top of the target branch in case we are behind it.
 
+	If there were merging conflicts, it's as easy as going through each file accepting either the current code or the incoming one (incoming changes). Those messages will be prompted authomatically. Then, git add . && git commit to confirm those conflicts.
+
 Valgrind
 
 	Use this command:
