@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 16:07:08 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/21 11:45:23 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/09/21 12:20:17 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,25 @@ char	**process_map(t_cub3d_data *data)
 	return (map);
 }
 
+void	check_extension(t_cub3d_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (data->map_data->map_arg[i])
+		i++;
+	while (data->map_data->map_arg[i] != '.')
+		i--;
+	if (i == 0)
+		exiterr("error: only .cub files accepted as arg", data, 301);
+	if (ft_strncmp(".cub", data->map_data->map_arg + i, ft_strlen(data->map_data->map_arg + 1)))
+		exiterr("error: only .cub files accepted as arg", data, 301);
+}
+
 void	parse_map(t_cub3d_data *data, char **argv)
 {
 	data->map_data->map_arg = argv[1];
+	check_extension(data);
 	data->map_data->map_fd = open(data->map_data->map_arg, O_RDONLY);
 	if (data->map_data->map_fd == -1)
 		exitperror(data, E_OPEN);

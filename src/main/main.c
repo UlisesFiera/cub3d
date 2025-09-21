@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 16:25:09 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/21 11:11:45 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/09/21 12:07:58 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	main(int argc, char **argv)
 
 	data = NULL;
 	if (argc != 2)
-		exiterr("error: introduce 1 .ber map file as an argument", data, 1);
+		exiterr("error: introduce 1 .cub map file as an argument", data, 1);
 	data = smalloc(sizeof(t_cub3d_data));
 	init(argv, data);
 	data->mlx_id = mlx_init();
