@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   window_size.c                                      :+:      :+:    :+:   */
+/*   map_size.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 17:58:39 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/20 18:42:24 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/09/21 10:23:47 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	window_size(t_cub3d_data *data)
+void	map_size(t_cub3d_data *data)
 {
 	char	*reader;
 	int		new_column;

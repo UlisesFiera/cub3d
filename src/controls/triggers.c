@@ -1,35 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_hand.c                                       :+:      :+:    :+:   */
+/*   triggers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/17 19:32:30 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/21 11:29:46 by ulfernan         ###   ########.fr       */
+/*   Created: 2025/09/21 11:02:46 by ulfernan          #+#    #+#             */
+/*   Updated: 2025/09/21 11:26:56 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	exiterr(char *error_text, t_cub3d_data *data, int errcode)
+void	esc(int keycode, t_cub3d_data *data)
 {
-	printf(RED_DOT);
-	printf(" %s\n", error_text);
-	if (errcode != 101 && errcode != 1)
+	if (keycode == 65307)
 	{
+		printf("exiting cub3d...\n");
 		free_mlx(data);
 		free(data);
+		exit(0);
 	}
-	exit(errcode);
 }
 
-void	exitperror(t_cub3d_data *data, int errcode)
+int	press(int keycode, t_cub3d_data *data)
 {
-	printf(RED_DOT);
-	if (errcode == E_OPEN)
-		perror("open");
-	free_mlx(data);
-	free(data);
-	exit(EXIT_FAILURE);
+	esc(keycode, data);
+	return (0);
+}
+
+void	triggers(t_cub3d_data *data)
+{
+	mlx_hook(data->win, 2, 1L << 0, press, data);
+	mlx_hook(data->win, 17, 0, close_window, data);
 }

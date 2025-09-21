@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 16:34:44 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/20 18:36:03 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/09/21 11:11:20 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ typedef struct s_cub3d_data
 {
 	void		*mlx_id;
 	void		*win;
+	int			win_height;
+	int			win_width;
 	t_map_data	*map_data;
 	t_graphics	*graph_data;
 }				t_cub3d_data;
@@ -60,15 +62,21 @@ typedef struct s_cub3d_data
 
 void	free_mlx(t_cub3d_data *data);
 void	*smalloc(size_t bytes);
+void	init_data(t_cub3d_data *data, char **argv);
 
 // window
 
 void	window_manage(t_cub3d_data *data);
-void	window_size(t_cub3d_data *data);
+int		close_window(t_cub3d_data *data);
+
+// controls
+
+void	triggers(t_cub3d_data *data);
 
 // map
 
 void	parse_map(t_cub3d_data *data, char **argv);
+void	map_size(t_cub3d_data *data);
 
 // error
 
@@ -77,7 +85,7 @@ void	exiterr(char *error_text, t_cub3d_data *data, int errcode);
 
 // graphic
 
-void	graphic_init(t_cub3d_data *data);
+void	init_graphic(t_cub3d_data *data);
 
 // utils
 
@@ -85,3 +93,14 @@ void	reset_fd_cursor(t_cub3d_data *data);
 char	last_char(char *string);
 
 #endif
+
+/*
+
+Error codes:
+
+	- 00X generic errors
+	- 10X system errors
+	- 20X mlx errors
+	- 30X map errors
+
+*/

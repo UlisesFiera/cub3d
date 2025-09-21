@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 16:07:08 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/20 18:26:39 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/09/21 10:24:54 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,5 @@ void	parse_map(t_cub3d_data *data, char **argv)
 	data->map_data->map = process_map(data);
 	if (!data->map_data->map)
 		exiterr("error: couldn't read/empty map", data, 301);
+	map_size(data);
 }
