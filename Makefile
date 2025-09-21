@@ -5,7 +5,7 @@ CC			= 	cc
 LIBFT		= 	./libft/libft.a
 MLX			= 	./minilibx/minilibx-linux/libmlx_Linux.a
 
-STD_FLAGS	= 	-Wall -Wextra -Werror
+STD_FLAGS	= 	-Wall -Wextra -Werror -g
 MLX_FLAGS	= 	-Lminilibx/minilibx-linux -lmlx_Linux -lX11 -lXext	# flags for linking mlx deps
 INC_FLAGS   = 	-I./libft -I./minilibx/minilibx-linux -I./src		# flags for linking cub3d, lbft and mlx headers
 
@@ -13,8 +13,14 @@ SRCS		= 	src/main/main.c \
 				src/main/free_hand.c \
 				src/main/error_hand.c \
 				src/main/smalloc.c \
+				src/main/init_data.c \
 				src/window/window_manage.c \
 				src/map/parse_map.c \
+				src/map/map_size.c \
+				src/graphics/init_graphic.c \
+				src/utils/reset_fd_cursor.c \
+				src/utils/last_char.c \
+				src/controls/triggers.c \
 
 OBJDIR		= 	build
 OBJS		= 	$(patsubst src/%.c,${OBJDIR}/%.o,${SRCS})
@@ -72,3 +78,7 @@ fclean:	clean
 re:	fclean all
 
 .PHONY:	all clean fclean re
+
+.DEFAULT:
+	@printf "\n\033[31m[●]\033[0m Error: no rule to make target '$@'\n"
+	@false

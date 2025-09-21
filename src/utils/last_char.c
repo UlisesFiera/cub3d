@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_hand.c                                       :+:      :+:    :+:   */
+/*   last_char.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/17 19:32:30 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/21 11:29:46 by ulfernan         ###   ########.fr       */
+/*   Created: 2025/09/20 18:32:45 by ulfernan          #+#    #+#             */
+/*   Updated: 2025/09/20 18:38:44 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	exiterr(char *error_text, t_cub3d_data *data, int errcode)
+char	last_char(char *string)
 {
-	printf(RED_DOT);
-	printf(" %s\n", error_text);
-	if (errcode != 101 && errcode != 1)
-	{
-		free_mlx(data);
-		free(data);
-	}
-	exit(errcode);
-}
+	int	i;
 
-void	exitperror(t_cub3d_data *data, int errcode)
-{
-	printf(RED_DOT);
-	if (errcode == E_OPEN)
-		perror("open");
-	free_mlx(data);
-	free(data);
-	exit(EXIT_FAILURE);
+	i = 0;
+	if (!string || !string[i])
+		return ('\0');
+	while (string[i])
+		i++;
+	if (string[i] == '\0')
+		i--;
+	return (string[i]);
 }

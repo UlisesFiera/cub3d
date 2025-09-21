@@ -1,35 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_hand.c                                       :+:      :+:    :+:   */
+/*   init_graphic.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/17 19:32:30 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/21 11:29:46 by ulfernan         ###   ########.fr       */
+/*   Created: 2025/09/20 17:55:30 by ulfernan          #+#    #+#             */
+/*   Updated: 2025/09/21 10:21:26 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	exiterr(char *error_text, t_cub3d_data *data, int errcode)
+void	init_graphic(t_cub3d_data *data)
 {
-	printf(RED_DOT);
-	printf(" %s\n", error_text);
-	if (errcode != 101 && errcode != 1)
-	{
-		free_mlx(data);
-		free(data);
-	}
-	exit(errcode);
-}
-
-void	exitperror(t_cub3d_data *data, int errcode)
-{
-	printf(RED_DOT);
-	if (errcode == E_OPEN)
-		perror("open");
-	free_mlx(data);
-	free(data);
-	exit(EXIT_FAILURE);
+	data->graph_data->x_size = 100;
+	data->graph_data->y_size = 100;
 }
