@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 17:58:39 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/21 10:23:47 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/09/23 16:25:51 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	map_size(t_cub3d_data *data)
 	reset_fd_cursor(data);
 	while (1)
 	{
-		reader = get_next_line(data->map_data->map_fd);
+		reader = get_next_line(data->map_data->file_fd);
 		if (reader)
 		{
 			new_column = ft_strlen(reader);
@@ -37,5 +37,5 @@ void	map_size(t_cub3d_data *data)
 			break ;
 	}
 	if (data->map_data->map_height == 0 || data->map_data->map_width == 0)
-		exiterr("error: couldn't read/empty map", data, 301);
+		exiterr("couldn't read/empty map", data, 301);
 }

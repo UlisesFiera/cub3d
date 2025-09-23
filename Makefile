@@ -15,11 +15,16 @@ SRCS		= 	src/main/main.c \
 				src/main/smalloc.c \
 				src/main/init_data.c \
 				src/window/window_manage.c \
-				src/map/parse_map.c \
+				src/map/parse_file.c \
 				src/map/map_size.c \
+				src/map/validate_file.c \
+				src/map/init_map.c \
+				src/map/parse_elements.c \
+				src/map/parse_map.c \
 				src/graphics/init_graphic.c \
 				src/utils/reset_fd_cursor.c \
 				src/utils/last_char.c \
+				src/utils/tab_reader.c \
 				src/controls/triggers.c \
 
 OBJDIR		= 	build

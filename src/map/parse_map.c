@@ -5,81 +5,97 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/20 16:07:08 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/21 12:20:17 by ulfernan         ###   ########.fr       */
+/*   Created: 2025/09/23 15:30:37 by ulfernan          #+#    #+#             */
+/*   Updated: 2025/09/23 18:39:34 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-char	**alloc_map(t_cub3d_data *data)
-{
-	char	**map;
-	char	*reader;
-	int		count;
-
-	count = 0;
-	while (1)
-	{
-		reader = get_next_line(data->map_data->map_fd);
-		if (reader)
-		{
-			count++;
-			free(reader);
-		}
-		else
-			break ;
-	}
-	if (count == 0)
-		return (NULL);
-	map = smalloc(sizeof(char *) * (count + 1));
-	map[count] = NULL;
-	return (map);
-}
-
-char	**process_map(t_cub3d_data *data)
-{
-	char	**map;
-	int		i;
-
-	map = alloc_map(data);
-	reset_fd_cursor(data);
-	i = 0;
-	while (1)
-	{
-		map[i] = get_next_line(data->map_data->map_fd);
-		if (map[i])
-			i++;
-		else
-			break ;
-	}
-	return (map);
-}
-
-void	check_extension(t_cub3d_data *data)
+void	skip_nl(t_cub3d_data *data, char *line)
 {
 	int	i;
-
-	i = 0;
-	while (data->map_data->map_arg[i])
-		i++;
-	while (data->map_data->map_arg[i] != '.')
-		i--;
-	if (i == 0)
-		exiterr("error: only .cub files accepted as arg", data, 301);
-	if (ft_strncmp(".cub", data->map_data->map_arg + i, ft_strlen(data->map_data->map_arg + 1)))
-		exiterr("error: only .cub files accepted as arg", data, 301);
+	
+	while (line)
+	{
+		i = 0;
+		while (line[i] && line[i] == ' ')
+			i++;
+		if (line[i] && line[i] == '\n')
+		{
+			free(line);
+			line = get_next_line(data->map_data->file_fd);
+			if (line)
+				data->map_data->file_bread += ft_strlen(line);
+		}
+		else if (line[i] && line[i] != '\n')
+		{
+			free(line);
+			return ;
+		}
+	}	
+	exiterr("missing map info", data, 301);
 }
 
-void	parse_map(t_cub3d_data *data, char **argv)
+void	map_alloc(t_cub3d_data *data)
 {
-	data->map_data->map_arg = argv[1];
-	check_extension(data);
-	data->map_data->map_fd = open(data->map_data->map_arg, O_RDONLY);
-	if (data->map_data->map_fd == -1)
-		exitperror(data, E_OPEN);
-	data->map_data->map = process_map(data);
-	if (!data->map_data->map)
-		exiterr("error: couldn't read/empty map", data, 301);
-	map_size(data);
+	char	*line;
+	int		size;
+	int		i;
+
+	size = 1;
+	line = get_next_line(data->map_data->file_fd);
+	while (line)
+	{
+		i = 0;
+		while (line[i] && line[i] == ' ')
+			i++;
+		if (line[i] && line[i] == '\n')
+		{
+			free(line);
+			exiterr("empty lines in map not allowed", data, 301);
+		}
+		size++;
+		free(line);
+		line = get_next_line(data->map_data->file_fd);
+	}
+	data->map_data->map = smalloc(sizeof (char *) * (size + 1));
+	data->map_data->map[size] = NULL;
 }
+
+void	map_copy(t_cub3d_data *data)
+{
+	char	*line;
+	int		bread;
+	int		i;
+
+	reset_fd_cursor(data);
+	bread = 0;
+	line = get_next_line(data->map_data->file_fd);
+	if (line)
+		bread += ft_strlen(line);
+	while (bread < data->map_data->file_bread && line)
+	{
+		free(line);
+		line = get_next_line(data->map_data->file_fd);
+		if (line)
+			bread += ft_strlen(line);
+	}
+	i = 0;
+	while (line)
+	{
+		data->map_data->map[i] = ft_strdup(line); // need safe strdup
+		i++;
+		free(line);
+		line = get_next_line(data->map_data->file_fd);
+	}
+}
+
+void	parse_map(t_cub3d_data *data, char *line)
+{
+	skip_nl(data, line);
+	map_alloc(data);
+	map_copy(data);
+}
+
+// We start with size = 1 accounting for the line already found by skip_nl

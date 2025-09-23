@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 18:43:26 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/21 11:45:12 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/09/23 18:38:34 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,24 +24,30 @@ void	free_map(t_map_data *map)
 		free(map->map);
 		map->map = NULL;
 	}
-	if (map->map_fd != INULL)
+	if (map->file_fd != INULL)
 	{
-		close(map->map_fd);
-		map->map_fd = INULL;
+		close(map->file_fd);
+		map->file_fd = INULL;
 	}
-	map->map_fd = INULL;
-	if (map->map_height != INULL)
-		map->map_height = INULL;
-	if (map->map_width != INULL)
-		map->map_width = INULL;
+	map->file_fd = INULL;
+	if (map->elements)
+	{
+		i = 0;
+		while (map->elements[i])
+		{
+			free(map->elements[i]);
+			map->elements[i] = NULL;
+			i++;
+		}
+		free(map->elements);
+		map->elements = NULL;
+	}
 }
 
 void	free_graph(t_graphics *graph)
 {
-	if (graph->x_size != INULL)
-		graph->x_size = INULL;
-	if (graph->y_size != INULL)
-		graph->y_size = INULL;
+	(void)graph;
+	return ;
 }
 
 void	free_mlx(t_cub3d_data *data)

@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:21:02 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/20 18:26:01 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/09/23 16:28:19 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	reset_fd_cursor(t_cub3d_data *data)
 {
-	close(data->map_data->map_fd);
-	data->map_data->map_fd = open(data->map_data->map_arg, O_RDONLY);
-	if (data->map_data->map_fd == -1)
-		exitperror(data, E_OPEN);
+	close(data->map_data->file_fd);
+	data->map_data->file_fd = open(data->map_data->file, O_RDONLY);
+	if (data->map_data->file_fd == -1)
+		exitperror(data, ERR_OPEN);
 }

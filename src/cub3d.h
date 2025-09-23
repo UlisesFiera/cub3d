@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 16:34:44 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/21 11:11:20 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/09/23 16:13:40 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@
 
 # define INULL -918273645
 
-# define E_OPEN 1
+# define ERR_OPEN 1
+
+# define ELEM_ORIENT 0
+# define ELEM_OTHER 1
 
 # include "libft.h"
 # include "mlx.h"
@@ -33,11 +36,24 @@
 # include <sys/time.h>
 # include <math.h>
 
+typedef struct s_element
+{
+	int		type;
+	char	*name;
+	char	*path;
+	int		found;
+}			t_element;
+
 typedef struct s_map_data
 {
-	char		*map_arg;
+	char		*file;
+	char		**processed_file;
 	char		**map;
-	int			map_fd;
+	t_element	**elements;
+	int			total_elem;
+	int			elem_found;
+	int			file_fd;
+	int			file_bread;
 	int			map_height;
 	int			map_width;
 }				t_map_data;
@@ -46,6 +62,10 @@ typedef struct s_graphics
 {
 	int			x_size;
 	int			y_size;
+	char		*n_texture;
+	char		*s_texture;
+	char		*w_texture;
+	char		*e_texture;
 }				t_graphics;
 
 typedef struct s_cub3d_data
@@ -62,7 +82,9 @@ typedef struct s_cub3d_data
 
 void	free_mlx(t_cub3d_data *data);
 void	*smalloc(size_t bytes);
-void	init_data(t_cub3d_data *data, char **argv);
+void	init_data(t_cub3d_data *data);
+void	invalid_char(char chr, t_cub3d_data *data);
+void	dup_element(char *elem, t_cub3d_data *data);
 
 // window
 
@@ -73,10 +95,14 @@ int		close_window(t_cub3d_data *data);
 
 void	triggers(t_cub3d_data *data);
 
-// map
+// map parse
 
-void	parse_map(t_cub3d_data *data, char **argv);
+void	parse_file(t_cub3d_data *data, char **argv);
 void	map_size(t_cub3d_data *data);
+void	validate_file(t_cub3d_data *data);
+void	init_map(t_cub3d_data *data, char **argv);
+void	parse_elements(t_cub3d_data *data);
+void	parse_map(t_cub3d_data *data, char *line);
 
 // error
 
@@ -91,6 +117,7 @@ void	init_graphic(t_cub3d_data *data);
 
 void	reset_fd_cursor(t_cub3d_data *data);
 char	last_char(char *string);
+char	tab_reader(char **tab, int reset);
 
 #endif
 
