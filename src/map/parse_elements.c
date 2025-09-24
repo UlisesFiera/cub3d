@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 14:02:56 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/23 17:42:48 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/09/24 10:53:55 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,17 @@ void	check_element(t_cub3d_data *data, char *line)
 
 	none_found = 1;
 	i = 0;
-	while (data->map_data->elements[i] && none_found)
+	while (data->file_data->elements[i] && none_found)
 	{
-		if (!data->map_data->elements[i]->found
-			&& !ft_strncmp(line, data->map_data->elements[i]->name,
-			ft_strlen(data->map_data->elements[i]->name)))
+		if (!data->file_data->elements[i]->found
+			&& !ft_strncmp(line, data->file_data->elements[i]->name,
+				ft_strlen(data->file_data->elements[i]->name)))
 		{
 			none_found = 0;
-			data->map_data->elements[i]->found = 1;
-			copy_path(data, line, data->map_data->elements[i]);
-			data->map_data->elem_found++;
-			if (data->map_data->elem_found == data->map_data->total_elem)
+			data->file_data->elements[i]->found = 1;
+			copy_path(data, line, data->file_data->elements[i]);
+			data->file_data->elem_found++;
+			if (data->file_data->elem_found == data->file_data->total_elem)
 				return ;
 		}
 		i++;
@@ -54,22 +54,21 @@ void	check_element(t_cub3d_data *data, char *line)
 
 void	parse_elements(t_cub3d_data *data)
 {
-	char	*line;
-	int		i;
+	int	i;
+	int	j;
 
-	reset_fd_cursor(data);
-	line = get_next_line(data->map_data->file_fd);
-	data->map_data->file_bread += ft_strlen(line);
-	while (line && data->map_data->total_elem != data->map_data->elem_found)
+	i = 0;
+	while (data->file_data->processed_file[i]
+		&& data->file_data->total_elem != data->file_data->elem_found)
 	{
-		i = 0;
-		while (line[i] && line[i] == ' ')
-			i++;
-		if (line[i] && line[i] != '\n')
-			check_element(data, line + i);
-		free(line);
-		line = get_next_line(data->map_data->file_fd);
-		data->map_data->file_bread += ft_strlen(line);
+		j = 0;
+		while (data->file_data->processed_file[i][j]
+			&& data->file_data->processed_file[i][j] == ' ')
+			j++;
+		if (data->file_data->processed_file[i][j]
+			&& data->file_data->processed_file[i][j] != '\n')
+			check_element(data, data->file_data->processed_file[i] + j);
+		i++;
 	}
-	parse_map(data, line);
+	parse_map(data, i);
 }

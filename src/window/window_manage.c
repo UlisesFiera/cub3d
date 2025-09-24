@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 18:15:30 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/21 14:37:23 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/09/24 10:50:00 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	close_window(t_cub3d_data *data)
 {
 	printf("exiting cub3d...\n");
-	free_mlx(data);
+	free_data(data);
 	free(data);
 	exit(0);
 }

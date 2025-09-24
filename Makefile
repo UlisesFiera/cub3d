@@ -14,6 +14,7 @@ SRCS		= 	src/main/main.c \
 				src/main/error_hand.c \
 				src/main/smalloc.c \
 				src/main/init_data.c \
+				src/main/free_file_data.c \
 				src/window/window_manage.c \
 				src/map/parse_file.c \
 				src/map/map_size.c \

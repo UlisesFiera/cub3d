@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 11:02:46 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/21 11:26:56 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/09/24 10:50:15 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	esc(int keycode, t_cub3d_data *data)
 	if (keycode == 65307)
 	{
 		printf("exiting cub3d...\n");
-		free_mlx(data);
+		free_data(data);
 		free(data);
 		exit(0);
 	}

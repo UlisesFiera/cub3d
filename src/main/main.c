@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 16:25:09 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/23 16:25:20 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/09/24 10:47:43 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	init(char **argv, t_cub3d_data *data)
 {
 	data->mlx_id = NULL;
 	data->win = NULL;
-	data->map_data = smalloc(sizeof(t_map_data));
+	data->file_data = smalloc(sizeof(t_file_data));
 	data->graph_data = smalloc(sizeof(t_graphics));
 	init_data(data);
 	init_map(data, argv);
@@ -38,7 +38,7 @@ int	main(int argc, char **argv)
 	window_manage(data);
 	triggers(data);
 	mlx_loop(data->mlx_id);
-	free_mlx(data);
+	free_data(data);
 	free(data);
 	return (0);
 }

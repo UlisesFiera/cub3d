@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 16:34:44 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/23 16:13:40 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/09/24 10:48:57 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct s_element
 	int		found;
 }			t_element;
 
-typedef struct s_map_data
+typedef struct s_file_data
 {
 	char		*file;
 	char		**processed_file;
@@ -56,7 +56,7 @@ typedef struct s_map_data
 	int			file_bread;
 	int			map_height;
 	int			map_width;
-}				t_map_data;
+}				t_file_data;
 
 typedef struct s_graphics
 {
@@ -74,13 +74,14 @@ typedef struct s_cub3d_data
 	void		*win;
 	int			win_height;
 	int			win_width;
-	t_map_data	*map_data;
+	t_file_data	*file_data;
 	t_graphics	*graph_data;
 }				t_cub3d_data;
 
 // main functions
 
-void	free_mlx(t_cub3d_data *data);
+void	free_data(t_cub3d_data *data);
+void	free_file_data(t_file_data *file);
 void	*smalloc(size_t bytes);
 void	init_data(t_cub3d_data *data);
 void	invalid_char(char chr, t_cub3d_data *data);
@@ -102,7 +103,7 @@ void	map_size(t_cub3d_data *data);
 void	validate_file(t_cub3d_data *data);
 void	init_map(t_cub3d_data *data, char **argv);
 void	parse_elements(t_cub3d_data *data);
-void	parse_map(t_cub3d_data *data, char *line);
+void	parse_map(t_cub3d_data *data, int index);
 
 // error
 
