@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 14:02:56 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/24 10:53:55 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/09/25 13:55:13 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	copy_path(t_cub3d_data *data, char *line, t_element *element)
 	while (line[i] && line[i] == ' ')
 		i++;
 	if (!line[i] || line[i] == '\n')
-		exiterr("path to texture not provided", data, 301);
+		exiterr("path to texture or color not provided", data, 301);
 	element->path = line + i;
 }
 

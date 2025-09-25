@@ -24,6 +24,7 @@ SRCS		= 	src/main/main.c \
 				src/map/parse_map.c \
 				src/map/check_walls.c \
 				src/graphics/init_graphic.c \
+				src/graphics/parse_colors.c \
 				src/utils/reset_fd_cursor.c \
 				src/utils/last_char.c \
 				src/utils/tab_reader.c \

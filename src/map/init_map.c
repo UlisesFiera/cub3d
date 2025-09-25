@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 15:19:06 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/25 10:52:11 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/09/25 13:50:51 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ t_element	*init_element(char *name, int type)
 
 void	init_element_list(t_cub3d_data *data)
 {
-	data->file_data->elements[0] = init_element("NO ", ELEM_ORIENT);
-	data->file_data->elements[1] = init_element("SO ", ELEM_ORIENT);
-	data->file_data->elements[2] = init_element("WE ", ELEM_ORIENT);
-	data->file_data->elements[3] = init_element("EA ", ELEM_ORIENT);
-	data->file_data->elements[4] = init_element("F ", ELEM_OTHER);
-	data->file_data->elements[5] = init_element("C ", ELEM_OTHER);
+	data->file_data->elements[0] = init_element("NO ", ELEM_NO);
+	data->file_data->elements[1] = init_element("SO ", ELEM_SO);
+	data->file_data->elements[2] = init_element("WE ", ELEM_WE);
+	data->file_data->elements[3] = init_element("EA ", ELEM_EA);
+	data->file_data->elements[4] = init_element("F ", ELEM_F);
+	data->file_data->elements[5] = init_element("C ", ELEM_C);
 }
 
 void	init_map(t_cub3d_data *data, char **argv)

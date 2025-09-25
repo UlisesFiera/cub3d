@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 16:34:44 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/25 11:45:54 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/09/25 17:53:36 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,12 @@
 
 # define ERR_OPEN 1
 
-# define ELEM_ORIENT 0
-# define ELEM_OTHER 1
+# define ELEM_NO 0
+# define ELEM_SO 1
+# define ELEM_WE 2
+# define ELEM_EA 3
+# define ELEM_F 4
+# define ELEM_C 5
 
 # include "libft.h"
 # include "mlx.h"
@@ -68,6 +72,8 @@ typedef struct s_graphics
 	char		*s_texture;
 	char		*w_texture;
 	char		*e_texture;
+	int			f_color;
+	int			c_color;
 }				t_graphics;
 
 typedef struct s_cub3d_data
@@ -117,6 +123,7 @@ void	openmaperr(char **map, int row, int col);
 // graphic
 
 void	init_graphic(t_cub3d_data *data);
+int		parse_color(char *color);
 
 // utils
 
