@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 15:19:06 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/24 10:52:02 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/09/25 10:52:11 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	init_map(t_cub3d_data *data, char **argv)
 	data->file_data->file_fd = INULL;
 	data->file_data->map_height = 0;
 	data->file_data->map_width = 0;
+	data->file_data->fill_map_height = 0;
+	data->file_data->fill_map_width = 0;
 	data->file_data->file_bread = 0;
 	data->file_data->total_elem = 6;
 	data->file_data->elements = smalloc(

@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 13:49:02 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/24 10:51:05 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/09/25 10:59:30 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	check_chars(t_cub3d_data *data)
 			break ;
 		if (reader != '0' && reader != '1' && reader != 'N' && reader != 'S'
 			&& reader != 'W' && reader != 'E' && reader != '\n'
-			&& reader != ' ')
+			&& reader != ' ' && reader != '\t')
 			invalid_char(reader, data);
 	}
 }
@@ -54,4 +54,5 @@ void	validate_file(t_cub3d_data *data)
 {
 	check_chars(data);
 	check_nl(data);
+	check_walls(data);
 }

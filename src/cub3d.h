@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 16:34:44 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/24 10:48:57 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/09/25 11:45:54 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ typedef struct s_file_data
 	int			file_bread;
 	int			map_height;
 	int			map_width;
+	int			fill_map_height;
+	int			fill_map_width;
 }				t_file_data;
 
 typedef struct s_graphics
@@ -104,11 +106,13 @@ void	validate_file(t_cub3d_data *data);
 void	init_map(t_cub3d_data *data, char **argv);
 void	parse_elements(t_cub3d_data *data);
 void	parse_map(t_cub3d_data *data, int index);
+void	check_walls(t_cub3d_data *data);
 
 // error
 
 void	exitperror(t_cub3d_data *data, int errcode);
 void	exiterr(char *error_text, t_cub3d_data *data, int errcode);
+void	openmaperr(char **map, int row, int col);
 
 // graphic
 
@@ -119,6 +123,7 @@ void	init_graphic(t_cub3d_data *data);
 void	reset_fd_cursor(t_cub3d_data *data);
 char	last_char(char *string);
 char	tab_reader(char **tab, int reset);
+void	rm_tabs(t_cub3d_data *data, int row);
 
 #endif
 

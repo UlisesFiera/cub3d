@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 19:32:30 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/24 10:47:34 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/09/25 11:54:04 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,30 @@ void	invalid_char(char chr, t_cub3d_data *data)
 	free_data(data);
 	free(data);
 	exit(301);
+}
+
+void	openmaperr(char **map, int row, int col)
+{
+	int	i;
+	int	j;
+
+	printf(RED_DOT);
+	printf(" Operture in map found at row %i col %i\n", row, col);
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (i == row && j == col)
+				printf("\033[31m%c\033[0m", map[i][j]);
+			else
+				printf("%c", map[i][j]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
 }
 
 void	exiterr(char *error_text, t_cub3d_data *data, int errcode)

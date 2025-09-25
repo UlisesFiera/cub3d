@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 15:30:37 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/24 10:52:40 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/09/24 15:53:23 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	skip_nl(t_cub3d_data *data, int index)
 		else if (data->file_data->processed_file[index][i]
 			&& data->file_data->processed_file[index][i] != '\n')
 			return (index);
-		index++;
 	}
 	exiterr("missing map content", data, 301);
 	return (-1);
@@ -70,11 +69,25 @@ void	map_copy(t_cub3d_data *data, int map_i)
 
 void	parse_map(t_cub3d_data *data, int index)
 {
+	int	i;
+	int	j;
 	int	map_i;
 
 	map_i = skip_nl(data, index);
 	map_alloc(data, map_i);
 	map_copy(data, map_i);
+	i = 0;
+	while (data->file_data->map[i])
+	{
+		j = 0;
+		while (data->file_data->map[i][j])
+		{
+			if (data->file_data->map[i][j] == '\t')
+				rm_tabs(data, i);
+			j++;
+		}
+		i++;
+	}
 }
 
 // We start with size = 1 accounting for the line already found by skip_nl
