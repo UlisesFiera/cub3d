@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 14:02:56 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/25 13:55:13 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/09/25 17:59:33 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	copy_path(t_cub3d_data *data, char *line, t_element *element)
 	if (!line[i] || line[i] == '\n')
 		exiterr("path to texture or color not provided", data, 301);
 	element->path = line + i;
+	element->path[ft_strlen(element->path) - 1] = '\0';
 }
 
 void	check_element(t_cub3d_data *data, char *line)
@@ -72,3 +73,5 @@ void	parse_elements(t_cub3d_data *data)
 	}
 	parse_map(data, i);
 }
+
+// We put a '\0' at the end of the path to remove the new line at the end

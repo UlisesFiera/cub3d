@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_hand.c                                       :+:      :+:    :+:   */
+/*   err1.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 19:32:30 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/25 11:54:04 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/09/25 18:43:13 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ void	invalid_char(char chr, t_cub3d_data *data)
 {
 	printf(RED_DOT);
 	printf(" Error\n");
-	printf("[x] found invalid char in map: %c\n", chr);
+	printf("[x] found invalid char in map or color code: ");
+	printf(RED);
+	printf("%c\n", chr);
+	printf(DEFAULT);
 	free_data(data);
 	free(data);
 	exit(301);

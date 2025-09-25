@@ -6,13 +6,18 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 16:34:44 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/25 17:53:36 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/09/25 18:41:05 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 
 # define CUB3D_H
+
+# define DEFAULT "\033[0m"
+# define RED "\033[31m"
+# define GREEN "\033[32m"
+# define YELLOW "\033[33m"
 
 # define RED_DOT "\033[31m●\033[0m"
 # define GREEN_DOT "\033[32m●\033[0m"
@@ -28,6 +33,10 @@
 # define ELEM_EA 3
 # define ELEM_F 4
 # define ELEM_C 5
+
+# define SET_RGB 0
+# define SET_COL 1
+# define RESET_RGB 2
 
 # include "libft.h"
 # include "mlx.h"
@@ -119,11 +128,12 @@ void	check_walls(t_cub3d_data *data);
 void	exitperror(t_cub3d_data *data, int errcode);
 void	exiterr(char *error_text, t_cub3d_data *data, int errcode);
 void	openmaperr(char **map, int row, int col);
+void	bad_color(t_cub3d_data *data, char *number);
 
 // graphic
 
 void	init_graphic(t_cub3d_data *data);
-int		parse_color(char *color);
+int		parse_color(t_cub3d_data *data, char *color);
 
 // utils
 

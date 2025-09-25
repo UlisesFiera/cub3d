@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 17:55:30 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/25 17:53:10 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/09/25 18:45:12 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,13 @@ void	set_element_paths(t_cub3d_data *data)
 		else if (data->file_data->elements[i]->type == ELEM_WE)
 			data->graph_data->w_texture = data->file_data->elements[i]->path;
 		else if (data->file_data->elements[i]->type == ELEM_F)
-			data->graph_data->f_color = parse_color(data->file_data->elements[i]->path);
+			data->graph_data->f_color = parse_color(
+					data, data->file_data->elements[i]->path);
 		else if (data->file_data->elements[i]->type == ELEM_C)
-			data->graph_data->c_color = parse_color(data->file_data->elements[i]->path);
+			data->graph_data->c_color = parse_color(
+					data, data->file_data->elements[i]->path);
 		i++;
 	}
-	printf("%s\n", data->graph_data->n_texture);
-	printf("%s\n", data->graph_data->s_texture);
-	printf("%s\n", data->graph_data->e_texture);
-	printf("%s\n", data->graph_data->w_texture);
-	printf("%x\n", data->graph_data->f_color);
-	printf("%x\n", data->graph_data->c_color);
 }
 
 void	init_graphic(t_cub3d_data *data)

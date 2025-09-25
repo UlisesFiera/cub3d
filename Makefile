@@ -11,7 +11,8 @@ INC_FLAGS   = 	-I./libft -I./minilibx/minilibx-linux -I./src		# flags for linkin
 
 SRCS		= 	src/main/main.c \
 				src/main/free_hand.c \
-				src/main/error_hand.c \
+				src/main/err1.c \
+				src/main/err2.c \
 				src/main/smalloc.c \
 				src/main/init_data.c \
 				src/main/free_file_data.c \
