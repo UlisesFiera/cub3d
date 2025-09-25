@@ -70,3 +70,67 @@ Valgrind
 	Use this command:
 
 	valgrind --suppressions=mlx.supp --show-leak-kinds=all --leak-check=full --track-fds=yes --trace-children=yes --track-origins=yes ./cub3d map_test.cub
+
+Roadmap
+
+	1. Player & Camera Setup
+
+	Define a player struct with:
+
+	Position (x, y) in map coordinates.
+
+	Direction vector (dir_x, dir_y).
+
+	Plane vector (plane_x, plane_y) for camera plane (controls FOV).
+
+	Initialize starting position based on your parsed map.
+
+	2. Raycasting Loop
+
+	For each vertical screen column x:
+
+	Calculate ray direction based on camera plane.
+
+	Determine which square of the map the ray is in.
+
+	Step through the grid using DDA (Digital Differential Analysis) to find the first wall hit.
+
+	Calculate distance to wall to correct fisheye effect.
+
+	Determine line height on screen to draw the wall slice.
+
+	Draw vertical lines representing walls with different colors based on wall orientation (optional shading).
+
+	3. Rendering
+
+	Draw floor and ceiling (can be a solid color or textured later).
+
+	Draw wall slices column by column.
+
+	Update the window each frame (double buffering with mlx_put_image_to_window recommended).
+
+	4. Movement & Controls
+
+	Add keyboard input to:
+
+	Move forward/backward.
+
+	Strafe left/right.
+
+	Rotate left/right.
+
+	Update player position with collision detection (don’t let the player go through walls).
+
+	5. Optional Enhancements
+
+	Textures: Map walls to texture images, scale vertical slice according to distance.
+
+	Sprites: Add objects like enemies or pickups using depth sorting.
+
+	Lighting/Shading: Darker walls farther away, or face-based shading.
+
+	6. Optimization
+
+	Avoid recalculating constants inside loops.
+
+	Limit resolution for faster rendering (scale up after testing).
