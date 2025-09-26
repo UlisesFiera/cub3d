@@ -95,6 +95,19 @@ typedef struct s_cub3d_data
 	t_graphics	*graph_data;
 }				t_cub3d_data;
 
+typedef struct s_player
+{
+	int			spawn_x;
+	int			spawn_y;
+	double		plane_x;
+	double		plane_y;
+	double		dir_x;
+	double		dir_y;
+	int			move_speed;
+	int			rot_speed;
+	t_file_data	*file_data;
+}				t_player;
+
 // main functions
 
 void	free_data(t_cub3d_data *data);
@@ -129,6 +142,7 @@ void	exitperror(t_cub3d_data *data, int errcode);
 void	exiterr(char *error_text, t_cub3d_data *data, int errcode);
 void	openmaperr(char **map, int row, int col);
 void	bad_color(t_cub3d_data *data, char *number);
+void	dup_dir_element(t_cub3d_data *data);
 
 // graphic
 
