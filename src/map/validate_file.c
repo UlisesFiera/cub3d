@@ -50,7 +50,7 @@ void	check_chars(t_cub3d_data *data)
 	}
 }
 
-void	check_duplicated_chars(t_cub3d_data *data)
+void	check_dup_chars(t_cub3d_data *data)
 {
 	int	i;
 	int	j;
@@ -72,6 +72,8 @@ void	check_duplicated_chars(t_cub3d_data *data)
 		}
 		i++;
 	}
+	if (count == 0)
+		no_dir_found(data);
 	if (count > 1)
 		dup_dir_element(data);
 }
@@ -79,7 +81,7 @@ void	check_duplicated_chars(t_cub3d_data *data)
 void	validate_file(t_cub3d_data *data)
 {
 	check_chars(data);
-	check_duplicated_chars(data);
+	check_dup_chars(data);
 	check_nl(data);
 	check_walls(data);
 }
