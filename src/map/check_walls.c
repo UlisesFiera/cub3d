@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-int	flood_fill(t_cub3d_data *data, char **map, int row, int col)
+static	int flood_fill(t_cub3d_data *data, char **map, int row, int col)
 {
 	if (row < 0 || col < 0
 		|| row >= data->file_data->fill_map_height
@@ -34,7 +34,7 @@ int	flood_fill(t_cub3d_data *data, char **map, int row, int col)
 	return (1);
 }
 
-void	copy_map_into_fill(char **map, char **fill_map)
+static	void copy_map_into_fill(char **map, char **fill_map)
 {
 	int	i;
 	int	j;
@@ -55,7 +55,7 @@ void	copy_map_into_fill(char **map, char **fill_map)
 	}
 }
 
-char	**fill_boundaries(t_cub3d_data *data, char **map)
+static	char **fill_boundaries(t_cub3d_data *data, char **map)
 {
 	char	**fill_map;
 	int		i;

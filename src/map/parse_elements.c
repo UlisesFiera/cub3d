@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-void	copy_path(t_cub3d_data *data, char *line, t_element *element)
+static	void copy_path(t_cub3d_data *data, char *line, t_element *element)
 {
 	int	i;
 
@@ -27,7 +27,7 @@ void	copy_path(t_cub3d_data *data, char *line, t_element *element)
 	element->path[ft_strlen(element->path) - 1] = '\0';
 }
 
-void	check_element(t_cub3d_data *data, char *line)
+static	void check_element(t_cub3d_data *data, char *line)
 {
 	int	none_found;
 	int	i;

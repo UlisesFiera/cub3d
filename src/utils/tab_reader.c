@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-char	get_next_char(char **tab, int *row, int *column)
+static	char get_next_char(char **tab, int *row, int *column)
 {
 	char	reader;
 

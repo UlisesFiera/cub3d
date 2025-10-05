@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-void	free_file_data2(t_file_data *file)
+static	void free_file_data2(t_file_data *file)
 {
 	int	i;
 
@@ -30,7 +30,7 @@ void	free_file_data2(t_file_data *file)
 	}
 }
 
-void	free_file_data1(t_file_data *file)
+static	void free_file_data1(t_file_data *file)
 {
 	int	i;
 

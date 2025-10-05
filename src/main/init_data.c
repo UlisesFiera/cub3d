@@ -12,8 +12,21 @@
 
 #include "cub3d.h"
 
-void	init_data(t_cub3d_data *data)
+static	void init_resolution(t_cub3d_data *data)
 {
-	data->win_width = 1280;
-	data->win_height = 800;
+	data->win_width = WIDTH;
+	data->win_height = HEIGHT;
+}
+
+void	init_data(char **argv, t_cub3d_data *data)
+{
+	data->mlx_id = NULL;
+	data->win = NULL;
+	data->file_data = smalloc(sizeof(t_file_data));
+	data->graph_data = smalloc(sizeof(t_graphics));
+	init_resolution(data);
+	init_map(data, argv);
+	init_graphic(data);
+	init_player(data);
+	data->dda = smalloc(sizeof(t_dda));
 }

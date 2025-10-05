@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-void	check_nl(t_cub3d_data *data)
+static	void check_nl(t_cub3d_data *data)
 {
 	int	nl_found;
 	int	i;
@@ -34,7 +34,7 @@ void	check_nl(t_cub3d_data *data)
 	}
 }
 
-void	check_chars(t_cub3d_data *data)
+static	void check_chars(t_cub3d_data *data)
 {
 	char	reader;
 
@@ -50,7 +50,7 @@ void	check_chars(t_cub3d_data *data)
 	}
 }
 
-void	check_dup_chars(t_cub3d_data *data)
+static	void check_dup_chars(t_cub3d_data *data)
 {
 	int	i;
 	int	j;
