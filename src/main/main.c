@@ -12,17 +12,6 @@
 
 #include "cub3d.h"
 
-void	init(char **argv, t_cub3d_data *data)
-{
-	data->mlx_id = NULL;
-	data->win = NULL;
-	data->file_data = smalloc(sizeof(t_file_data));
-	data->graph_data = smalloc(sizeof(t_graphics));
-	init_data(data);
-	init_map(data, argv);
-	init_graphic(data);
-}
-
 int	main(int argc, char **argv)
 {
 	t_cub3d_data	*data;
@@ -31,12 +20,9 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		exiterr("introduce 1 .cub map file as an argument", data, 1);
 	data = smalloc(sizeof(t_cub3d_data));
-	init(argv, data);
-	data->mlx_id = mlx_init();
-	if (!data->mlx_id)
-		exiterr("mlx failed on init", data, 201);
-	window_manage(data);
+	window_manage(data, argv);
 	triggers(data);
+	mlx_loop_hook(data->mlx_id, render_loop, data);
 	mlx_loop(data->mlx_id);
 	free_data(data);
 	free(data);
