@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-void	check_nl(t_cub3d_data *data)
+static void	check_nl(t_cub3d_data *data)
 {
 	int	nl_found;
 	int	i;
@@ -34,7 +34,7 @@ void	check_nl(t_cub3d_data *data)
 	}
 }
 
-void	check_chars(t_cub3d_data *data)
+static void	check_chars(t_cub3d_data *data)
 {
 	char	reader;
 
@@ -50,9 +50,38 @@ void	check_chars(t_cub3d_data *data)
 	}
 }
 
+static void	check_dup_chars(t_cub3d_data *data)
+{
+	int	i;
+	int	j;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (data->file_data->map[i])
+	{
+		j = 0;
+		while (data->file_data->map[i][j])
+		{
+			if (data->file_data->map[i][j] == 'N' || \
+data->file_data->map[i][j] == 'S' || \
+data->file_data->map[i][j] == 'W' || \
+data->file_data->map[i][j] == 'E')
+				count++;
+			j++;
+		}
+		i++;
+	}
+	if (count == 0)
+		no_dir_found(data);
+	if (count > 1)
+		dup_dir_element(data);
+}
+
 void	validate_file(t_cub3d_data *data)
 {
 	check_chars(data);
+	check_dup_chars(data);
 	check_nl(data);
 	check_walls(data);
 }

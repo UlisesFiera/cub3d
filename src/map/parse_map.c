@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-int	skip_nl(t_cub3d_data *data, int index)
+static int	skip_nl(t_cub3d_data *data, int index)
 {
 	int	i;
 
@@ -33,7 +33,7 @@ int	skip_nl(t_cub3d_data *data, int index)
 	return (-1);
 }
 
-void	map_alloc(t_cub3d_data *data, int map_i)
+static void	map_alloc(t_cub3d_data *data, int map_i)
 {
 	int		size;
 	int		i;
@@ -51,7 +51,7 @@ void	map_alloc(t_cub3d_data *data, int map_i)
 	data->file_data->map[size] = NULL;
 }
 
-void	map_copy(t_cub3d_data *data, int map_i)
+static void	map_copy(t_cub3d_data *data, int map_i)
 {
 	int		i;
 

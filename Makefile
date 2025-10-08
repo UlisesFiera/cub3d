@@ -6,17 +6,20 @@ LIBFT		= 	./libft/libft.a
 MLX			= 	./minilibx/minilibx-linux/libmlx_Linux.a
 
 STD_FLAGS	= 	-Wall -Wextra -Werror -g
-MLX_FLAGS	= 	-Lminilibx/minilibx-linux -lmlx_Linux -lX11 -lXext	# flags for linking mlx deps
-INC_FLAGS   = 	-I./libft -I./minilibx/minilibx-linux -I./src		# flags for linking cub3d, lbft and mlx headers
+MLX_FLAGS	= 	-Lminilibx/minilibx-linux -lmlx_Linux -lX11 -lXext -lm	# flags for linking mlx deps + math lib
+INC_FLAGS   = 	-I./libft -I./minilibx/minilibx-linux -I./src	# include paths (no linker flags here)
 
-SRCS		= 	src/main/main.c \
+SRCS		= 	src/controls/triggers.c \
+				src/graphics/graphics.c \
+				src/graphics/init_graphic.c \
+				src/graphics/parse_colors.c \
+				src/main/main.c \
 				src/main/free_hand.c \
 				src/main/err1.c \
 				src/main/err2.c \
 				src/main/smalloc.c \
 				src/main/init_data.c \
 				src/main/free_file_data.c \
-				src/window/window_manage.c \
 				src/map/parse_file.c \
 				src/map/map_size.c \
 				src/map/validate_file.c \
@@ -24,13 +27,19 @@ SRCS		= 	src/main/main.c \
 				src/map/parse_elements.c \
 				src/map/parse_map.c \
 				src/map/check_walls.c \
-				src/graphics/init_graphic.c \
-				src/graphics/parse_colors.c \
-				src/utils/reset_fd_cursor.c \
+				src/player/keys_manage.c \
+				src/player/move.c \
+				src/player/rotation.c \
+				src/player/spawn.c \
+				src/utils/is_wall.c \
 				src/utils/last_char.c \
+				src/utils/reset_fd_cursor.c \
 				src/utils/tab_reader.c \
 				src/utils/rm_tabs.c \
-				src/controls/triggers.c \
+				src/window/dda_setup.c \
+				src/window/dda.c \
+				src/window/render.c \
+				src/window/window_manage.c \
 
 OBJDIR		= 	build
 OBJS		= 	$(patsubst src/%.c,${OBJDIR}/%.o,${SRCS})

@@ -38,6 +38,23 @@
 # define SET_COL 1
 # define RESET_RGB 2
 
+# define WIDTH 1280
+# define HEIGHT 800
+
+# define W 119
+# define A 97
+# define S 115
+# define D 100
+# define ESC 65307
+
+# define LEFT 65361
+# define RIGHT 65363
+
+# define M_PI 3.14159265358979323846
+# define INFINITY 10000000000
+
+# define NAME "ulfernan and asalguer's cub3D"
+
 # include "libft.h"
 # include "mlx.h"
 
@@ -46,75 +63,118 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
+# include <stdbool.h>
 # include <sys/time.h>
 # include <math.h>
 
 typedef struct s_element
 {
-	int		type;
-	char	*name;
-	char	*path;
-	int		found;
-}			t_element;
+	int				type;
+	char			*name;
+	char			*path;
+	int				found;
+}					t_element;
 
 typedef struct s_file_data
 {
-	char		*file;
-	char		**processed_file;
-	char		**map;
-	t_element	**elements;
-	int			total_elem;
-	int			elem_found;
-	int			file_fd;
-	int			file_bread;
-	int			map_height;
-	int			map_width;
-	int			fill_map_height;
-	int			fill_map_width;
-}				t_file_data;
+	char			*file;
+	char			**processed_file;
+	char			**map;
+	t_element		**elements;
+	int				total_elem;
+	int				elem_found;
+	int				file_fd;
+	int				file_bread;
+	int				map_height;
+	int				map_width;
+	int				fill_map_height;
+	int				fill_map_width;
+}					t_file_data;
 
 typedef struct s_graphics
 {
-	int			x_size;
-	int			y_size;
-	char		*n_texture;
-	char		*s_texture;
-	char		*w_texture;
-	char		*e_texture;
-	int			f_color;
-	int			c_color;
-}				t_graphics;
+	int				x_size;
+	int				y_size;
+	char			*n_texture;
+	char			*s_texture;
+	char			*w_texture;
+	char			*e_texture;
+	int				f_color;
+	int				c_color;
+}					t_graphics;
+
+typedef struct s_dda
+{
+	double			ray_dir_x;
+	double			ray_dir_y;
+	double			delta_dist_x;
+	double			delta_dist_y;
+	double			side_dist_x;
+	double			side_dist_y;
+	int				step_x;
+	int				step_y;
+	double			perp_wall_dist;
+	int				line_height;
+	int				draw_start;
+	int				draw_end;
+	int				wall_color;
+}					t_dda;
+
+typedef struct s_cub3d_data	t_cub3d_data;
+
+typedef struct s_player
+{
+	bool			key_up;
+	bool			key_left;
+	bool			key_down;
+	bool			key_right;
+	bool			rotate_left;
+	bool			rotate_right;
+	double			angle;
+	double			x;
+	double			y;
+	double			plane_vector_x;
+	double			plane_vector_y;
+	int				map_x;
+	int				map_y;
+	double			move_speed;
+	double			rot_speed;
+	double			dir_x;
+	double			dir_y;
+	t_cub3d_data	*data;
+}					t_player;
 
 typedef struct s_cub3d_data
 {
-	void		*mlx_id;
-	void		*win;
-	int			win_height;
-	int			win_width;
-	t_file_data	*file_data;
-	t_graphics	*graph_data;
-}				t_cub3d_data;
+	void			*mlx_id;
+	void			*win;
+	void			*img;
+	char			*metadata;
+	int				bpp;
+	int				size_line;
+	int				endian;
+	int				win_height;
+	int				win_width;
+	t_file_data		*file_data;
+	t_graphics		*graph_data;
+	t_player		*player;
+	t_dda			*dda;
+}					t_cub3d_data;
 
-// main functions
-
+/* main functions */
 void	free_data(t_cub3d_data *data);
 void	free_file_data(t_file_data *file);
 void	*smalloc(size_t bytes);
-void	init_data(t_cub3d_data *data);
-void	invalid_char(char chr, t_cub3d_data *data);
-void	dup_element(char *elem, t_cub3d_data *data);
+void	init_data(char **argv, t_cub3d_data *data);
 
-// window
-
-void	window_manage(t_cub3d_data *data);
+/* window */
 int		close_window(t_cub3d_data *data);
+void	window_manage(t_cub3d_data *data);
 
-// controls
-
+/* controls */
 void	triggers(t_cub3d_data *data);
 
-// map parse
-
+/* map parse */
 void	parse_file(t_cub3d_data *data, char **argv);
 void	map_size(t_cub3d_data *data);
 void	validate_file(t_cub3d_data *data);
@@ -123,24 +183,46 @@ void	parse_elements(t_cub3d_data *data);
 void	parse_map(t_cub3d_data *data, int index);
 void	check_walls(t_cub3d_data *data);
 
-// error
+/* player */
+void	init_player(t_cub3d_data *data);
+int		key_press(int keycode, void *param);
+int		key_release(int keycode, void *param);
+void	rotate_player(t_player *player);
+void	update_player(t_cub3d_data *data);
 
+/* error */
+void	invalid_char(char chr, t_cub3d_data *data);
+void	dup_element(char *elem, t_cub3d_data *data);
+void	openmaperr(char **map, int row, int col);
 void	exitperror(t_cub3d_data *data, int errcode);
 void	exiterr(char *error_text, t_cub3d_data *data, int errcode);
-void	openmaperr(char **map, int row, int col);
 void	bad_color(t_cub3d_data *data, char *number);
+void	dup_dir_element(t_cub3d_data *data);
+void	no_dir_found(t_cub3d_data *data);
 
-// graphic
-
+/* graphic */
 void	init_graphic(t_cub3d_data *data);
 int		parse_color(t_cub3d_data *data, char *color);
+int		render_loop(t_cub3d_data *data);
+void	put_pixel(t_cub3d_data *data, int x, int y, int color);
+void	draw_vertical(t_cub3d_data *data, int x, int color);
+void	draw_background(t_cub3d_data *data);
 
-// utils
+/* dda */
+void	ray_normalization(t_cub3d_data *data, int x);
+void	set_player_cell(t_cub3d_data *data);
+void	set_cell_distance(t_cub3d_data *data);
+void	set_cell_increment(t_cub3d_data *data);
+void	dda(t_cub3d_data *data, int *side);
+void	fish_eye(t_cub3d_data *data, int *side);
+void	project_wall(t_cub3d_data *data);
 
+/* utils */
 void	reset_fd_cursor(t_cub3d_data *data);
 char	last_char(char *string);
 char	tab_reader(char **tab, int reset);
 void	rm_tabs(t_cub3d_data *data, int row);
+int		is_wall(t_cub3d_data *data, double x, double y);
 
 #endif
 

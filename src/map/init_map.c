@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-t_element	*init_element(char *name, int type)
+static t_element	*init_element(char *name, int type)
 {
 	t_element	*element;
 
@@ -24,7 +24,7 @@ t_element	*init_element(char *name, int type)
 	return (element);
 }
 
-void	init_element_list(t_cub3d_data *data)
+static void	init_element_list(t_cub3d_data *data)
 {
 	data->file_data->elements[0] = init_element("NO ", ELEM_NO);
 	data->file_data->elements[1] = init_element("SO ", ELEM_SO);

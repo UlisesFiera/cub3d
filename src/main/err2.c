@@ -22,3 +22,23 @@ void	bad_color(t_cub3d_data *data, char *number)
 	free(data);
 	exit(301);
 }
+
+void	dup_dir_element(t_cub3d_data *data)
+{
+	printf(RED_DOT);
+	printf(" Error\n");
+	printf("[x] player orientation character duplicated\n");
+	free_data(data);
+	free(data);
+	exit(301);
+}
+
+void	no_dir_found(t_cub3d_data *data)
+{
+	printf(RED_DOT);
+	printf(" Error\n");
+	printf("[x] player orientation character not found\n");
+	free_data(data);
+	free(data);
+	exit(301);
+}

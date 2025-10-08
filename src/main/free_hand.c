@@ -12,10 +12,30 @@
 
 #include "cub3d.h"
 
-void	free_graph(t_graphics *graph)
+static void	free_graph(t_graphics *graph)
 {
 	(void)graph;
 	return ;
+}
+
+static void	free_mlx(t_cub3d_data *data)
+{
+	if (data->img)
+	{
+		mlx_destroy_image(data->mlx_id, data->img);
+		data->img = NULL;
+	}
+	if (data->win)
+	{
+		mlx_destroy_window(data->mlx_id, data->win);
+		data->win = NULL;
+	}
+	if (data->mlx_id)
+	{
+		mlx_destroy_display(data->mlx_id);
+		free(data->mlx_id);
+		data->mlx_id = NULL;
+	}
 }
 
 void	free_data(t_cub3d_data *data)
@@ -32,15 +52,7 @@ void	free_data(t_cub3d_data *data)
 		free(data->graph_data);
 		data->graph_data = NULL;
 	}
-	if (data->win)
-	{
-		mlx_destroy_window(data->mlx_id, data->win);
-		data->win = NULL;
-	}
-	if (data->mlx_id)
-	{
-		mlx_destroy_display(data->mlx_id);
-		free(data->mlx_id);
-		data->mlx_id = NULL;
-	}
+	free_mlx(data);
+	free(data->player);
+	free(data->dda);
 }

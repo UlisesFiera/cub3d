@@ -12,25 +12,9 @@
 
 #include "cub3d.h"
 
-void	esc(int keycode, t_cub3d_data *data)
-{
-	if (keycode == 65307)
-	{
-		printf("exiting cub3d...\n");
-		free_data(data);
-		free(data);
-		exit(0);
-	}
-}
-
-int	press(int keycode, t_cub3d_data *data)
-{
-	esc(keycode, data);
-	return (0);
-}
-
 void	triggers(t_cub3d_data *data)
 {
-	mlx_hook(data->win, 2, 1L << 0, press, data);
+	mlx_hook(data->win, 2, 1L << 0, key_press, data->player);
+	mlx_hook(data->win, 3, 1L << 1, key_release, data->player);
 	mlx_hook(data->win, 17, 0, close_window, data);
 }
