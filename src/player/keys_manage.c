@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys_manage.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalguer <asalguer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 18:55:00 by asalguer          #+#    #+#             */
-/*   Updated: 2025/10/02 18:55:00 by asalguer         ###   ########.fr       */
+/*   Updated: 2025/10/08 18:21:26 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int	key_press(int keycode, void *param)
 	{
 		printf("exiting cub3d...\n");
 		free_data(player->data);
-		free(player->data);
 		exit(0);
 	}
 	return (0);

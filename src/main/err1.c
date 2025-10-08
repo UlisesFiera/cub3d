@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 19:32:30 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/25 18:43:13 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/10/08 18:32:36 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	dup_element(char *elem, t_cub3d_data *data)
 	printf(" Error\n");
 	printf("[x] invalid or duplicated element: %s\n", elem);
 	free_data(data);
-	free(data);
 	exit(301);
 }
 
@@ -31,7 +30,6 @@ void	invalid_char(char chr, t_cub3d_data *data)
 	printf("%c\n", chr);
 	printf(DEFAULT);
 	free_data(data);
-	free(data);
 	exit(301);
 }
 
@@ -65,10 +63,7 @@ void	exiterr(char *error_text, t_cub3d_data *data, int errcode)
 	printf(" Error\n");
 	printf("[x] %s\n", error_text);
 	if (errcode != 101 && errcode != 1)
-	{
 		free_data(data);
-		free(data);
-	}
 	exit(errcode);
 }
 
@@ -79,6 +74,5 @@ void	exitperror(t_cub3d_data *data, int errcode)
 	if (errcode == ERR_OPEN)
 		perror("open");
 	free_data(data);
-	free(data);
 	exit(EXIT_FAILURE);
 }

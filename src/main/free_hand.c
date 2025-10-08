@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 18:43:26 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/24 10:48:04 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/10/08 18:37:32 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,9 @@ void	free_data(t_cub3d_data *data)
 		data->graph_data = NULL;
 	}
 	free_mlx(data);
-	free(data->player);
-	free(data->dda);
+	if (data->player)
+		free(data->player);
+	if (data->dda)
+		free(data->dda);
+	free(data);
 }

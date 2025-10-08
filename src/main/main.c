@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 16:25:09 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/24 10:47:43 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/10/08 18:27:50 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,5 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(data->mlx_id, render_loop, data);
 	mlx_loop(data->mlx_id);
 	free_data(data);
-	free(data);
 	return (0);
 }
