@@ -40,6 +40,7 @@ SRCS		= 	src/controls/triggers.c \
 				src/window/dda.c \
 				src/window/render.c \
 				src/window/window_manage.c \
+				src/player/init_player.c \
 
 OBJDIR		= 	build
 OBJS		= 	$(patsubst src/%.c,${OBJDIR}/%.o,${SRCS})

@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 16:34:44 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/25 18:41:05 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/10/08 18:52:28 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,6 +189,7 @@ int		key_press(int keycode, void *param);
 int		key_release(int keycode, void *param);
 void	rotate_player(t_player *player);
 void	update_player(t_cub3d_data *data);
+void	get_dir(t_player *player);
 
 /* error */
 void	invalid_char(char chr, t_cub3d_data *data);
