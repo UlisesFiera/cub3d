@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-static	void init_resolution(t_cub3d_data *data)
+static void	init_resolution(t_cub3d_data *data)
 {
 	data->win_width = WIDTH;
 	data->win_height = HEIGHT;

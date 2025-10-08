@@ -20,7 +20,8 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		exiterr("introduce 1 .cub map file as an argument", data, 1);
 	data = smalloc(sizeof(t_cub3d_data));
-	window_manage(data, argv);
+	init_data(argv, data);
+	window_manage(data);
 	triggers(data);
 	mlx_loop_hook(data->mlx_id, render_loop, data);
 	mlx_loop(data->mlx_id);

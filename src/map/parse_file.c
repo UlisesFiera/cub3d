@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-static	char **alloc_file(t_cub3d_data *data)
+static char	**alloc_file(t_cub3d_data *data)
 {
 	char	**pfile;
 	char	*reader;
@@ -41,7 +41,7 @@ static	char **alloc_file(t_cub3d_data *data)
 	return (pfile);
 }
 
-static	void process_file(t_cub3d_data *data)
+static void	process_file(t_cub3d_data *data)
 {
 	char	*line;
 	int		i;
@@ -65,7 +65,7 @@ static	void process_file(t_cub3d_data *data)
 	}
 }
 
-static	void check_extension(t_cub3d_data *data)
+static void	check_extension(t_cub3d_data *data)
 {
 	int	i;
 

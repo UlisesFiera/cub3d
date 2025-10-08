@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-static	char *alloc_clean_line(t_cub3d_data *data, int row)
+static char	*alloc_clean_line(t_cub3d_data *data, int row)
 {
 	char	*clean_line;
 	int		size;

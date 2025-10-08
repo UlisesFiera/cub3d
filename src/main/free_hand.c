@@ -12,13 +12,13 @@
 
 #include "cub3d.h"
 
-static	void free_graph(t_graphics *graph)
+static void	free_graph(t_graphics *graph)
 {
 	(void)graph;
 	return ;
 }
 
-static	void free_mlx(t_cub3d_data *data)
+static void	free_mlx(t_cub3d_data *data)
 {
 	if (data->img)
 	{

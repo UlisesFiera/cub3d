@@ -20,9 +20,8 @@ int	close_window(t_cub3d_data *data)
 	exit(0);
 }
 
-void	window_manage(t_cub3d_data *data, char **argv)
+void	window_manage(t_cub3d_data *data)
 {
-	init_data(argv, data);
 	data->mlx_id = mlx_init();
 	if (!data->mlx_id)
 	{
@@ -37,6 +36,7 @@ void	window_manage(t_cub3d_data *data, char **argv)
 		return ;
 	}
 	data->img = mlx_new_image(data->mlx_id, data->win_width, data->win_height);
-	data->metadata = mlx_get_data_addr(data->img, &data->bpp, &data->size_line, &data->endian);
+	data->metadata = mlx_get_data_addr(data->img, &data->bpp, \
+&data->size_line, &data->endian);
 	mlx_put_image_to_window(data->mlx_id, data->win, data->img, 0, 0);
 }

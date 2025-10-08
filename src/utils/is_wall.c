@@ -14,14 +14,14 @@
 
 int	is_wall(t_cub3d_data *data, double x, double y)
 {
-    int	map_x;
-    int	map_y;
+	int	map_x;
+	int	map_y;
 
 	map_x = (int)x;
 	map_y = (int)y;
-    if (map_y < 0 || map_y >= data->file_data->map_height)
-        return (1);
-    if (map_x < 0 || map_x >= data->file_data->map_width)
-        return (1);
-    return (data->file_data->map[map_y][map_x] == '1');
+	if (map_y < 0 || map_y >= data->file_data->map_height)
+		return (1);
+	if (map_x < 0 || map_x >= data->file_data->map_width)
+		return (1);
+	return (data->file_data->map[map_y][map_x] == '1');
 }

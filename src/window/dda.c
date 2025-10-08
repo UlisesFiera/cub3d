@@ -13,8 +13,9 @@
 #include "cub3d.h"
 
 /*
-** 5) DDA loop: step to next grid line in the smallest side_dist, until we hit a wall
-**    side = 0 for an x-side hit (vertical wall), side = 1 for a y-side hit (horizontal wall)
+	5) DDA loop: step to next grid line in the smallest side_dist,
+ 	until we hit a wall	side = 0 for an x-side hit (vertical wall),
+	side = 1 for a y-side hit (horizontal wall)
 */
 void	dda(t_cub3d_data *data, int *side)
 {
@@ -36,7 +37,8 @@ void	dda(t_cub3d_data *data, int *side)
 			data->player->map_y += data->dda->step_y;
 			*side = 1;
 		}
-		if (is_wall(data, (double)data->player->map_x, (double)data->player->map_y))
+		if (is_wall(data, (double)data->player->map_x, \
+(double)data->player->map_y))
 			hit = 1;
 	}
 }
@@ -47,11 +49,11 @@ void	dda(t_cub3d_data *data, int *side)
 void	fish_eye(t_cub3d_data *data, int *side)
 {
 	if (*side == 0)
-		data->dda->perp_wall_dist = (data->player->map_x - data->player->x +\
-			 (1 - data->dda->step_x) / 2.0) / data->dda->ray_dir_x;
+		data->dda->perp_wall_dist = (data->player->map_x - data->player->x + \
+(1 - data->dda->step_x) / 2.0) / data->dda->ray_dir_x;
 	else
-		data->dda->perp_wall_dist = (data->player->map_y - data->player->y +\
-			 (1 - data->dda->step_y) / 2.0) / data->dda->ray_dir_y;
+		data->dda->perp_wall_dist = (data->player->map_y - data->player->y + \
+(1 - data->dda->step_y) / 2.0) / data->dda->ray_dir_y;
 	if (data->dda->perp_wall_dist <= 0)
 		data->dda->perp_wall_dist = 0.01;
 }
@@ -61,7 +63,8 @@ void	fish_eye(t_cub3d_data *data, int *side)
 */
 void	project_wall(t_cub3d_data *data)
 {
-	data->dda->line_height = (int)(data->win_height / data->dda->perp_wall_dist);
+	data->dda->line_height = (int)(data->win_height / \
+data->dda->perp_wall_dist);
 	data->dda->draw_start = -data->dda->line_height / 2 + data->win_height / 2;
 	data->dda->draw_end = data->dda->line_height / 2 + data->win_height / 2;
 }

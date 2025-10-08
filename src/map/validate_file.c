@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-static	void check_nl(t_cub3d_data *data)
+static void	check_nl(t_cub3d_data *data)
 {
 	int	nl_found;
 	int	i;
@@ -34,7 +34,7 @@ static	void check_nl(t_cub3d_data *data)
 	}
 }
 
-static	void check_chars(t_cub3d_data *data)
+static void	check_chars(t_cub3d_data *data)
 {
 	char	reader;
 
@@ -50,7 +50,7 @@ static	void check_chars(t_cub3d_data *data)
 	}
 }
 
-static	void check_dup_chars(t_cub3d_data *data)
+static void	check_dup_chars(t_cub3d_data *data)
 {
 	int	i;
 	int	j;
@@ -64,9 +64,9 @@ static	void check_dup_chars(t_cub3d_data *data)
 		while (data->file_data->map[i][j])
 		{
 			if (data->file_data->map[i][j] == 'N' || \
-				data->file_data->map[i][j] == 'S' || \
-				data->file_data->map[i][j] == 'W' || \
-				data->file_data->map[i][j] == 'E')
+data->file_data->map[i][j] == 'S' || \
+data->file_data->map[i][j] == 'W' || \
+data->file_data->map[i][j] == 'E')
 				count++;
 			j++;
 		}

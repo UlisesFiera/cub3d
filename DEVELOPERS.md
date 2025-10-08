@@ -134,3 +134,12 @@ Roadmap
 	Avoid recalculating constants inside loops.
 
 	Limit resolution for faster rendering (scale up after testing).
+
+
+
+Features
+
+	- Cambiar tamano muros + pov con fog
+	- Mejora de rendimiento con gettimeofday para controlar los frames del juego
+	- Implementar pantalla de carga y de bienvenida
+	- 

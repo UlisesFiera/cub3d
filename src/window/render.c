@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-static	void draw_column(t_cub3d_data *data, int x)
+static void	draw_column(t_cub3d_data *data, int x)
 {
 	int	side;
 
@@ -27,14 +27,16 @@ static	void draw_column(t_cub3d_data *data, int x)
 		data->dda->wall_color = 0x777777;
 	else
 		data->dda->wall_color = 0xAAAAAA;
-	draw_vertical(data, x, data->dda->draw_start, data->dda->draw_end, data->dda->wall_color);
+	draw_vertical(data, x, data->dda->wall_color);
 }
 
-int render_loop(t_cub3d_data *data)
+int	render_loop(t_cub3d_data *data)
 {
+	int	x;
+
 	update_player(data);
 	draw_background(data);
-	int x = 0;
+	x = 0;
 	while (x < data->win_width)
 	{
 		draw_column(data, x);

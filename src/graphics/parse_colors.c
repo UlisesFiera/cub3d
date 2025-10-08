@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-static	int reset_rgb(int *r, int *g, int *b)
+static int	reset_rgb(int *r, int *g, int *b)
 {
 	*r = -1;
 	*g = -1;
@@ -20,7 +20,7 @@ static	int reset_rgb(int *r, int *g, int *b)
 	return (0);
 }
 
-static	int set_rgb(char *number, int *r, int *g, int *b)
+static int	set_rgb(char *number, int *r, int *g, int *b)
 {
 	if (*r == -1)
 	{
@@ -43,7 +43,7 @@ static	int set_rgb(char *number, int *r, int *g, int *b)
 	return (0);
 }
 
-static	int set_color(char *number, int opcode, t_cub3d_data *data)
+static int	set_color(char *number, int opcode, t_cub3d_data *data)
 {
 	static int	r = -1;
 	static int	g = -1;
@@ -67,7 +67,7 @@ static	int set_color(char *number, int opcode, t_cub3d_data *data)
 		return (reset_rgb(&r, &g, &b));
 }
 
-static	char *alloc_number(void)
+static char	*alloc_number(void)
 {
 	char	*number;
 	int		size;

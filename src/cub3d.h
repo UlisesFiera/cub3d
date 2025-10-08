@@ -101,7 +101,7 @@ typedef struct s_graphics
 	char			*e_texture;
 	int				f_color;
 	int				c_color;
-} 							t_graphics;
+}					t_graphics;
 
 typedef struct s_dda
 {
@@ -120,29 +120,29 @@ typedef struct s_dda
 	int				wall_color;
 }					t_dda;
 
-typedef struct s_cub3d_data t_cub3d_data;
+typedef struct s_cub3d_data	t_cub3d_data;
 
 typedef struct s_player
 {
-	bool				key_up;
-	bool				key_left;
-	bool				key_down;
-	bool				key_right;
-	bool				rotate_left;
-	bool				rotate_right;
-	double				angle;
-	double				x;
-	double				y;
-	double				plane_vector_x;
-	double				plane_vector_y;
-	int					map_x;
-	int					map_y;
-	double				move_speed;
-	double				rot_speed;
-	double				dir_x;
-	double				dir_y;
-	t_cub3d_data		*data;
-} 						t_player;
+	bool			key_up;
+	bool			key_left;
+	bool			key_down;
+	bool			key_right;
+	bool			rotate_left;
+	bool			rotate_right;
+	double			angle;
+	double			x;
+	double			y;
+	double			plane_vector_x;
+	double			plane_vector_y;
+	int				map_x;
+	int				map_y;
+	double			move_speed;
+	double			rot_speed;
+	double			dir_x;
+	double			dir_y;
+	t_cub3d_data	*data;
+}					t_player;
 
 typedef struct s_cub3d_data
 {
@@ -159,7 +159,7 @@ typedef struct s_cub3d_data
 	t_graphics		*graph_data;
 	t_player		*player;
 	t_dda			*dda;
-} 					t_cub3d_data;
+}					t_cub3d_data;
 
 /* main functions */
 void	free_data(t_cub3d_data *data);
@@ -169,7 +169,7 @@ void	init_data(char **argv, t_cub3d_data *data);
 
 /* window */
 int		close_window(t_cub3d_data *data);
-void	window_manage(t_cub3d_data *data, char **argv);
+void	window_manage(t_cub3d_data *data);
 
 /* controls */
 void	triggers(t_cub3d_data *data);
@@ -205,7 +205,7 @@ void	init_graphic(t_cub3d_data *data);
 int		parse_color(t_cub3d_data *data, char *color);
 int		render_loop(t_cub3d_data *data);
 void	put_pixel(t_cub3d_data *data, int x, int y, int color);
-void	draw_vertical(t_cub3d_data *data, int x, int start, int end, int color);
+void	draw_vertical(t_cub3d_data *data, int x, int color);
 void	draw_background(t_cub3d_data *data);
 
 /* dda */

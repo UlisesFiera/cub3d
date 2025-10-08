@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-static	void set_element_paths(t_cub3d_data *data)
+static void	set_element_paths(t_cub3d_data *data)
 {
 	int	i;
 
