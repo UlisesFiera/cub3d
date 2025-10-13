@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 17:55:30 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/09/25 18:45:12 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/10/12 19:44:26 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,25 @@ static void	set_element_paths(t_cub3d_data *data)
 	}
 }
 
+static void	init_texture(t_texture *texture)
+{
+	texture->img = NULL;
+	texture->bytes = NULL;
+	texture->bits_per_pixel = 0;
+	texture->endian = 0;
+	texture->width = 0;
+	texture->height = 0;
+	texture->line_length = 0;
+}
+
 void	init_graphic(t_cub3d_data *data)
 {
 	data->graph_data->x_size = 100;
 	data->graph_data->y_size = 100;
+	init_texture(data->graph_data->nwall_texture);
+	init_texture(data->graph_data->swall_texture);
+	init_texture(data->graph_data->ewall_texture);
+	init_texture(data->graph_data->wwall_texture);
 	set_element_paths(data);
+	load_textures(data);
 }

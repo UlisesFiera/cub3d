@@ -1,4 +1,4 @@
-NAME		= 	cub3d
+NAME		= 	cub3D
 
 CC			= 	cc
 
@@ -10,9 +10,14 @@ MLX_FLAGS	= 	-Lminilibx/minilibx-linux -lmlx_Linux -lX11 -lXext -lm	# flags for 
 INC_FLAGS   = 	-I./libft -I./minilibx/minilibx-linux -I./src	# include paths (no linker flags here)
 
 SRCS		= 	src/controls/triggers.c \
-				src/graphics/graphics.c \
 				src/graphics/init_graphic.c \
 				src/graphics/parse_colors.c \
+				src/graphics/load_textures.c \
+				src/graphics/dda_setup.c \
+				src/graphics/draw_background.c \
+				src/graphics/draw_vertical.c \
+				src/graphics/dda.c \
+				src/graphics/render.c \
 				src/main/main.c \
 				src/main/free_hand.c \
 				src/main/err1.c \
@@ -36,9 +41,6 @@ SRCS		= 	src/controls/triggers.c \
 				src/utils/reset_fd_cursor.c \
 				src/utils/tab_reader.c \
 				src/utils/rm_tabs.c \
-				src/window/dda_setup.c \
-				src/window/dda.c \
-				src/window/render.c \
 				src/window/window_manage.c \
 				src/player/init_player.c \
 

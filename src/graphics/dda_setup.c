@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda_setup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalguer <asalguer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 18:55:00 by asalguer          #+#    #+#             */
-/*   Updated: 2025/10/02 18:55:00 by asalguer         ###   ########.fr       */
+/*   Updated: 2025/10/12 17:38:50 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,8 @@ void	ray_normalization(t_cub3d_data *data, int x)
 	double	camera_x;
 
 	camera_x = 2.0 * x / (double)data->win_width - 1.0;
-	data->dda->ray_dir_x = data->player->dir_x + \
-data->player->plane_vector_x * camera_x;
-	data->dda->ray_dir_y = data->player->dir_y + \
-data->player->plane_vector_y * camera_x;
+	data->dda->ray_dir_x = data->player->dir_x + data->player->plane_vector_x * camera_x;
+	data->dda->ray_dir_y = data->player->dir_y + data->player->plane_vector_y * camera_x;
 }
 
 /*
@@ -39,7 +37,7 @@ void	set_player_cell(t_cub3d_data *data)
 /*
 ** 3) Sets the scalar that expands vector directions for x and y
 */
-void	set_cell_distance(t_cub3d_data *data)
+void	set_ray_units_size(t_cub3d_data *data)
 {
 	if (data->dda->ray_dir_x == 0)
 		data->dda->delta_dist_x = INFINITY;
@@ -55,7 +53,7 @@ void	set_cell_distance(t_cub3d_data *data)
 ** 4) Determine step direction and initial
 side distances to the first grid boundary
 */
-void	set_cell_increment(t_cub3d_data *data)
+void	setup_ray_dir_and_start_pos(t_cub3d_data *data)
 {
 	if (data->dda->ray_dir_x < 0)
 	{

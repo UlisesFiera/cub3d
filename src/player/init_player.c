@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 18:50:15 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/10/08 18:50:31 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/10/12 12:10:03 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,3 +28,7 @@ void	init_player(t_cub3d_data *data)
 	data->player->rotate_right = false;
 	data->player->rotate_left = false;
 }
+
+/*
+	The vectors are the POV value.
+*/

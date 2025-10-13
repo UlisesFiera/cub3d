@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 16:34:44 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/10/08 18:52:28 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/10/13 17:56:16 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,17 @@ typedef struct s_file_data
 	int				fill_map_width;
 }					t_file_data;
 
+typedef struct s_texture
+{
+	void			*img;
+	char			*bytes;
+	int				width;
+	int				height;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
+}					t_texture;
+
 typedef struct s_graphics
 {
 	int				x_size;
@@ -101,6 +112,10 @@ typedef struct s_graphics
 	char			*e_texture;
 	int				f_color;
 	int				c_color;
+	t_texture		*nwall_texture;
+	t_texture		*swall_texture;
+	t_texture		*wwall_texture;
+	t_texture		*ewall_texture;
 }					t_graphics;
 
 typedef struct s_dda
@@ -114,10 +129,16 @@ typedef struct s_dda
 	int				step_x;
 	int				step_y;
 	double			perp_wall_dist;
-	int				line_height;
 	int				draw_start;
 	int				draw_end;
+	t_texture		*wall_texture;
 	int				wall_color;
+	int				side;
+	double			slice_height;
+	double			sampling;
+	double			tex_pos;
+	int				tex_y;
+	int				tex_x;
 }					t_dda;
 
 typedef struct s_cub3d_data	t_cub3d_data;
@@ -206,17 +227,18 @@ void	init_graphic(t_cub3d_data *data);
 int		parse_color(t_cub3d_data *data, char *color);
 int		render_loop(t_cub3d_data *data);
 void	put_pixel(t_cub3d_data *data, int x, int y, int color);
-void	draw_vertical(t_cub3d_data *data, int x, int color);
+void	draw_vertical(t_cub3d_data *data, int x);
 void	draw_background(t_cub3d_data *data);
+void	load_textures(t_cub3d_data *data);
 
 /* dda */
 void	ray_normalization(t_cub3d_data *data, int x);
 void	set_player_cell(t_cub3d_data *data);
-void	set_cell_distance(t_cub3d_data *data);
-void	set_cell_increment(t_cub3d_data *data);
-void	dda(t_cub3d_data *data, int *side);
-void	fish_eye(t_cub3d_data *data, int *side);
-void	project_wall(t_cub3d_data *data);
+void	set_ray_units_size(t_cub3d_data *data);
+void	setup_ray_dir_and_start_pos(t_cub3d_data *data);
+void	trace_ray(t_cub3d_data *data, int *side);
+void	fix_wall_dist_and_fish_eye(t_cub3d_data *data, int *side);
+void	col_setup(t_cub3d_data *data);
 
 /* utils */
 void	reset_fd_cursor(t_cub3d_data *data);
@@ -235,5 +257,6 @@ Error codes:
 	- 10X system errors
 	- 20X mlx errors
 	- 30X map errors
-
+	- 40x graphic errors
+	
 */
