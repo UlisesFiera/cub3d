@@ -143,5 +143,7 @@ Features
 	- Mejora de rendimiento con gettimeofday para controlar los frames del juego
 	- Implementar pantalla de carga y de bienvenida
 	- Sleep opcional para ver cómo se carga cada columna
+			//mlx_put_image_to_window(data->mlx_id, data->win, data->img, 0, 0);
+			//usleep(1000);
 	- Controles para la velocidad y el PoV
 	- Repetir texturas

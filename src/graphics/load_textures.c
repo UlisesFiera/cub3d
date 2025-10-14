@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 19:30:28 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/10/14 06:36:12 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/10/14 18:52:35 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	load_texture_data(t_cub3d_data *data, t_texture *texture, char obj)
 	else if (obj == 'W')
 		texture_route = data->graph_data->w_texture;
 	texture->img = mlx_xpm_file_to_image(data->mlx_id,
-		texture_route, &texture->width, &texture->height);
+			texture_route, &texture->width, &texture->height);
 	if (!texture->img)
 		exiterr("error while loading texture", data, 401);
 	texture->bytes = mlx_get_data_addr(

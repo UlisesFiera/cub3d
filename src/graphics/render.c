@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 18:55:00 by asalguer          #+#    #+#             */
-/*   Updated: 2025/10/13 18:27:38 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/10/14 18:55:27 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ static void	draw_column(t_cub3d_data *data, int x)
 	assign_texture_to_sides(data, &side);
 	col_setup(data);
 	draw_slice(data, x);
-	//mlx_put_image_to_window(data->mlx_id, data->win, data->img, 0, 0);
-	//usleep(1000);
 }
 
 int	render_loop(t_cub3d_data *data)

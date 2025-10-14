@@ -6,46 +6,31 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 18:43:26 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/10/14 06:15:38 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/10/14 19:00:28 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+static void	free_texture(t_texture *texture, t_cub3d_data *data)
+{
+	if (texture->img)
+		mlx_destroy_image(data->mlx_id, texture->img);
+	texture->img = NULL;
+	free(texture);
+	texture = NULL;
+}
+
 static void	free_graph(t_graphics *graph, t_cub3d_data *data)
 {
 	if (graph->nwall_texture)
-	{
-		if (graph->nwall_texture->img)
-			mlx_destroy_image(data->mlx_id, graph->nwall_texture->img);
-		graph->nwall_texture->img = NULL;
-		free(graph->nwall_texture);
-		graph->nwall_texture = NULL;
-	}
+		free_texture(graph->nwall_texture, data);
 	if (graph->swall_texture)
-	{
-		if (graph->swall_texture->img)
-			mlx_destroy_image(data->mlx_id, graph->swall_texture->img);
-		graph->swall_texture->img = NULL;
-		free(graph->swall_texture);
-		graph->swall_texture = NULL;
-	}
+		free_texture(graph->swall_texture, data);
 	if (graph->ewall_texture)
-	{
-		if (graph->ewall_texture->img)
-			mlx_destroy_image(data->mlx_id, graph->ewall_texture->img);
-		graph->ewall_texture->img = NULL;
-		free(graph->ewall_texture);
-		graph->ewall_texture = NULL;
-	}
+		free_texture(graph->ewall_texture, data);
 	if (graph->wwall_texture)
-	{
-		if (graph->wwall_texture->img)
-			mlx_destroy_image(data->mlx_id, graph->wwall_texture->img);
-		graph->wwall_texture->img = NULL;
-		free(graph->wwall_texture);
-		graph->wwall_texture = NULL;
-	}
+		free_texture(graph->wwall_texture, data);
 	return ;
 }
 
