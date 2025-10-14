@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 18:19:10 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/10/13 18:19:21 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/10/14 18:35:36 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int get_tex_x(t_cub3d_data *data)
 		wall_x = data->player->x + data->dda->perp_wall_dist \
 		* data->dda->ray_dir_x;
 	wall_x -= floor(wall_x);
-	tex_x = (int)(wall_x * data->dda->wall_texture->width);
+	tex_x = (int)(wall_x * data->dda->wall_texture->width * 2) \
+	% data->dda->wall_texture->width;
 	if (data->dda->side == 1 || data->dda->side == 3)
 		tex_x = data->dda->wall_texture->width - tex_x - 1;
 	if (tex_x < 0)

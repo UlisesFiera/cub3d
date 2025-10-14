@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 18:55:00 by asalguer          #+#    #+#             */
-/*   Updated: 2025/10/13 18:20:06 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/10/14 18:08:30 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void	col_setup(t_cub3d_data *data)
 	data->dda->draw_start = -data->dda->slice_height / 2 + data->win_height / 2;
 	data->dda->draw_end = data->dda->slice_height / 2 + data->win_height / 2;
 	data->dda->tex_x = get_tex_x(data);
-	data->dda->sampling = (double)data->dda->wall_texture->height \
-	/ data->dda->slice_height;
+	data->dda->sampling = (double)(data->dda->wall_texture->height \
+	/ data->dda->slice_height);
 }
 
 /*

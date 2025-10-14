@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_vertical.c                                    :+:      :+:    :+:   */
+/*   draw_slice.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 11:33:56 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/10/13 18:16:32 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/10/14 18:27:48 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	put_pixel(t_cub3d_data *data, int x, int y, int color)
 }
 void	draw_slice(t_cub3d_data *data, int x)
 {
-	int		y;
+	int		wall_y;
 	int		color;
 	double	precise_tex_y;
 
@@ -47,17 +47,17 @@ void	draw_slice(t_cub3d_data *data, int x)
 		data->dda->draw_end = data->win_height - 1;
 	precise_tex_y = (data->dda->draw_start - data->win_height \
 			/ 2 + data->dda->slice_height / 2) * data->dda->sampling;
-	y = data->dda->draw_start;
-	while (y <= data->dda->draw_end)
+	wall_y = data->dda->draw_start;
+	while (wall_y <= data->dda->draw_end)
 	{
-		data->dda->tex_y = (int)precise_tex_y;
+		data->dda->tex_y = ((int)precise_tex_y * 2) % data->dda->wall_texture->height;
 		if (data->dda->tex_y < 0)
 			data->dda->tex_y = 0;
 		if (data->dda->tex_y >= data->dda->wall_texture->height)
 			data->dda->tex_y = data->dda->wall_texture->height - 1;
 		get_texture_byte(data, &color);
-		put_pixel(data, x, y, color);
+		put_pixel(data, x, wall_y, color);
 		precise_tex_y += data->dda->sampling;
-		y++;
+		wall_y++;
 	}
 }

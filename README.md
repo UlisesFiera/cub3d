@@ -226,11 +226,19 @@ Raycasting
 
 				slice_height = data->win_height / data->dda->perp_wall_dist;
 			
-			2. We get the position of x inside the texture. First, we calculate the exact x (column) of the wall beign hit, which will be a value between 0 and 1. After that, is as simple as using that value to multiply it by the texture width. Voila, you got the matching x in the texture for the x in the wall. In the case of north and east walls, we flip them to match our PoV.
+			2. We get the position of 'x' inside the texture. First, we calculate the exact x (column) of the wall beign hit, which will be a value between 0 and 1. After that, is as simple as using that value to multiply it by the texture width. Voila, you got the matching x in the texture for the x in the wall. In the case of north and east walls, we flip them to match our PoV.
+
+				For both the 'x' and 'y' position we include this part of the operation:
+
+					... * 2) % data->dda->wall_texture->height;
+
+				What that is doing is skipping every other pixel of the texture until it reaches the vertical or horizontal half of the wall, and then starting again (thanks to the modulo).
+
+				Why? Because that way we get a mosaic of 4 textures for each wall instead of a giant texture filling up the whole side.
 
 			3. We calculate the sampling. We must figure out how to fit each texture of a fixed size into a wall of a variable size. Calculating the sampling we decide how many times we want to use each pixel of the texture for the current vertical slice. When exceding the size of the texture, you'll want to reuse pixels, and viceversa. It's as easy as dividing the texture height by the slice height.
 
-			4. We get the exact point in the texture y axis we are in order to select the appropiate color. Because we have a sampling value, we will move through the texture column in "sampling steps" instead of jumping from one index to the next. This will allow us to reuse or skip the pixels of the scale.
+			4. We get the exact point we are in the texture's 'y' axis in order to select the appropiate color. Because we have a sampling value, we will move through the texture column in "sampling steps" instead of jumping from one index to the next. This will allow us to reuse or skip the pixels of the scale.
 
 			We now know: 
 				- Where in the column of the window our slice starts.
