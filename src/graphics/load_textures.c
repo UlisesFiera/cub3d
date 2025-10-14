@@ -6,11 +6,39 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 19:30:28 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/10/12 11:28:58 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/10/13 18:14:46 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	assign_texture_to_sides(t_cub3d_data *data, int *side)
+{
+	if (*side == 0 && data->dda->step_x == 1)
+	{
+		data->dda->wall_color = 0x777777;
+		data->dda->wall_texture = data->graph_data->ewall_texture;
+		data->dda->side = 0;
+	}
+	else if (*side == 0 && data->dda->step_x == -1)
+	{
+		data->dda->wall_color = 0xFFFFFF;
+		data->dda->wall_texture = data->graph_data->wwall_texture;
+		data->dda->side = 1;
+	}
+	else if (*side == 1 && data->dda->step_y == 1)
+	{
+		data->dda->wall_color = 0xFF00FF;
+		data->dda->wall_texture = data->graph_data->swall_texture;
+		data->dda->side = 2;
+	}
+	else if (*side == 1 && data->dda->step_y == -1)
+	{
+		data->dda->wall_color = 0x0000FF;
+		data->dda->wall_texture = data->graph_data->nwall_texture;
+		data->dda->side = 3;
+	}
+}
 
 static void	load_texture_data(t_cub3d_data *data, t_texture *texture, char obj)
 {

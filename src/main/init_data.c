@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 10:11:55 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/10/08 20:32:24 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/10/14 06:14:38 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,13 @@ void	init_data(char **argv, t_cub3d_data *data)
 	data->file_data = smalloc(sizeof(t_file_data));
 	data->graph_data = smalloc(sizeof(t_graphics));
 	data->graph_data->nwall_texture = smalloc(sizeof(t_texture));
+	data->graph_data->nwall_texture->img = NULL;
 	data->graph_data->swall_texture = smalloc(sizeof(t_texture));
+	data->graph_data->swall_texture->img = NULL;
 	data->graph_data->ewall_texture = smalloc(sizeof(t_texture));
+	data->graph_data->ewall_texture->img = NULL;
 	data->graph_data->wwall_texture = smalloc(sizeof(t_texture));
+	data->graph_data->wwall_texture->img = NULL;
 	data->player = smalloc(sizeof(t_player));
 	data->dda = smalloc(sizeof(t_dda));
 	data->mlx_id = mlx_init();

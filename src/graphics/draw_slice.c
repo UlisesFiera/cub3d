@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 11:33:56 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/10/13 18:03:05 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/10/13 18:16:32 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	put_pixel(t_cub3d_data *data, int x, int y, int color)
 	data->metadata[index + 1] = (color >> 8) & 0xFF;
 	data->metadata[index + 2] = (color >> 16) & 0xFF;
 }
-void	draw_vertical(t_cub3d_data *data, int x)
+void	draw_slice(t_cub3d_data *data, int x)
 {
 	int		y;
 	int		color;

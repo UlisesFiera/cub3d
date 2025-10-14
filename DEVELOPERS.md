@@ -69,7 +69,7 @@ Valgrind
 
 	Use this command:
 
-	valgrind --suppressions=mlx.supp --show-leak-kinds=all --leak-check=full --track-fds=yes --trace-children=yes --track-origins=yes ./cub3d map_test.cub
+	valgrind --suppressions=mlx.supp --show-leak-kinds=all --leak-check=full --track-fds=yes --trace-children=yes --track-origins=yes ./cub3D map_test.cub
 
 Roadmap
 
@@ -142,4 +142,6 @@ Features
 	- Cambiar tamano muros + pov con fog
 	- Mejora de rendimiento con gettimeofday para controlar los frames del juego
 	- Implementar pantalla de carga y de bienvenida
-	- 
+	- Sleep opcional para ver cómo se carga cada columna
+	- Controles para la velocidad y el PoV
+	- Repetir texturas

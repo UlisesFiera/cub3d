@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 16:34:44 by ulfernan          #+#    #+#             */
-/*   Updated: 2025/10/13 17:56:16 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/10/13 18:19:30 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,9 +227,11 @@ void	init_graphic(t_cub3d_data *data);
 int		parse_color(t_cub3d_data *data, char *color);
 int		render_loop(t_cub3d_data *data);
 void	put_pixel(t_cub3d_data *data, int x, int y, int color);
-void	draw_vertical(t_cub3d_data *data, int x);
+void	draw_slice(t_cub3d_data *data, int x);
 void	draw_background(t_cub3d_data *data);
 void	load_textures(t_cub3d_data *data);
+void	assign_texture_to_sides(t_cub3d_data *data, int *side);
+int 	get_tex_x(t_cub3d_data *data);
 
 /* dda */
 void	ray_normalization(t_cub3d_data *data, int x);

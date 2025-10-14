@@ -15,7 +15,8 @@ SRCS		= 	src/controls/triggers.c \
 				src/graphics/load_textures.c \
 				src/graphics/dda_setup.c \
 				src/graphics/draw_background.c \
-				src/graphics/draw_vertical.c \
+				src/graphics/draw_slice.c \
+				src/graphics/get_tex_x.c \
 				src/graphics/dda.c \
 				src/graphics/render.c \
 				src/main/main.c \

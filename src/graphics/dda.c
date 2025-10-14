@@ -6,7 +6,7 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 18:55:00 by asalguer          #+#    #+#             */
-/*   Updated: 2025/10/13 17:56:36 by ulfernan         ###   ########.fr       */
+/*   Updated: 2025/10/13 18:20:06 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	trace_ray(t_cub3d_data *data, int *side)
 			data->player->map_y += data->dda->step_y;
 			*side = 1;
 		}
-		if (is_wall(data, (double)data->player->map_x, (double)data->player->map_y))
+		if (is_wall(data, (double)data->player->map_x,
+			(double)data->player->map_y))
 			hit = 1;
 	}
 }
@@ -40,33 +41,13 @@ void	trace_ray(t_cub3d_data *data, int *side)
 void	fix_wall_dist_and_fish_eye(t_cub3d_data *data, int *side)
 {
 	if (*side == 0)
-		data->dda->perp_wall_dist = (data->player->map_x - data->player->x + (1 - data->dda->step_x) / 2.0) / data->dda->ray_dir_x;
+		data->dda->perp_wall_dist = (data->player->map_x \
+		- data->player->x + (1 - data->dda->step_x) / 2.0) / data->dda->ray_dir_x;
 	else
-		data->dda->perp_wall_dist = (data->player->map_y - data->player->y + (1 - data->dda->step_y) / 2.0) / data->dda->ray_dir_y;
+		data->dda->perp_wall_dist = (data->player->map_y \
+		- data->player->y + (1 - data->dda->step_y) / 2.0) / data->dda->ray_dir_y;
 	if (data->dda->perp_wall_dist <= 0)
 		data->dda->perp_wall_dist = 0.01;
-}
-
-int get_tex_x(t_cub3d_data *data)
-{
-	double	wall_x;
-	int		tex_x;
-
-	if (data->dda->side == 0 || data->dda->side == 1)
-		wall_x = data->player->y + data->dda->perp_wall_dist \
-		* data->dda->ray_dir_y;
-	else
-		wall_x = data->player->x + data->dda->perp_wall_dist \
-		* data->dda->ray_dir_x;
-	wall_x -= floor(wall_x);
-	tex_x = (int)(wall_x * data->dda->wall_texture->width);
-	if (data->dda->side == 1 || data->dda->side == 3)
-		tex_x = data->dda->wall_texture->width - tex_x - 1;
-	if (tex_x < 0)
-		tex_x = 0;
-	if (tex_x >= data->dda->wall_texture->width)
-		tex_x = data->dda->wall_texture->width - 1;
-	return (tex_x);
 }
 
 void	col_setup(t_cub3d_data *data)
@@ -75,7 +56,8 @@ void	col_setup(t_cub3d_data *data)
 	data->dda->draw_start = -data->dda->slice_height / 2 + data->win_height / 2;
 	data->dda->draw_end = data->dda->slice_height / 2 + data->win_height / 2;
 	data->dda->tex_x = get_tex_x(data);
-	data->dda->sampling = (double)data->dda->wall_texture->height / data->dda->slice_height;
+	data->dda->sampling = (double)data->dda->wall_texture->height \
+	/ data->dda->slice_height;
 }
 
 /*

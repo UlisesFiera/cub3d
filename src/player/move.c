@@ -3,14 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalguer <asalguer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 18:55:00 by asalguer          #+#    #+#             */
-/*   Updated: 2025/10/02 18:55:00 by asalguer         ###   ########.fr       */
+/*   Updated: 2025/10/13 18:13:03 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	set_player_cell(t_cub3d_data *data)
+{
+	data->player->map_x = (int)data->player->x;
+	data->player->map_y = (int)data->player->y;
+}
 
 static void	calculate_dir(t_player *player, double *step_x, double *step_y)
 {
