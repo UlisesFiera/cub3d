@@ -90,9 +90,13 @@ int	parse_color(t_cub3d_data *data, char *color)
 
 	i = 0;
 	set_color(NULL, RESET_RGB, data);
+	while (color[i] == ' ')
+		i++;
+	if (!(color[i] >= '0' && color[i] <= '9'))
+		invalid_char(color[i], data);
 	while (color[i])
 	{
-		while (color[i] == ' ' || color[i] == ',')
+		if (color[i] == ',')
 			i++;
 		if (!(color[i] >= '0' && color[i] <= '9'))
 			invalid_char(color[i], data);
