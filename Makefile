@@ -63,7 +63,7 @@ ${MLX}:
 	@make --no-print-directory -C ./minilibx/minilibx-linux > /dev/null && printf "\r\033[33m[●]\033[0m compiling and installing minilibx deps...\n"
 	@which gcc > /dev/null || { printf "\r\033[33m[●]\033[0m installing gcc...\n"; sudo apt-get install -y gcc || printf "\r\033[31m[●]\033[0m failed to install gcc\n"; }
 	@which make > /dev/null || { printf "\r\033[33m[●]\033[0m installing make...\n"; sudo apt-get install -y make || printf "\r\033[31m[●]\033[0m failed to install make\n"; }
-	@dpkg -s xorg >/dev/null 2>&1 || { printf "\r\033[33m[●]\033[0m installing xorg...\n"; sudo apt-get install -y xorg || printf "\r\033[31m[●]\033[0m failed to install xorg\n"; }
+# @dpkg -s xorg >/dev/null 2>&1 || { printf "\r\033[33m[●]\033[0m installing xorg...\n"; sudo apt-get install -y xorg || printf "\r\033[31m[●]\033[0m failed to install xorg\n"; }
 	@dpkg -s libxext-dev >/dev/null 2>&1 || { printf "\r\033[33m[●]\033[0m installing libxext-dev...\n"; sudo apt-get install -y libxext-dev || printf "\r\033[31m[●]\033[0m failed to install libxext-dev\n"; }
 	@dpkg -s libbsd-dev >/dev/null 2>&1 || { printf "\r\033[33m[●]\033[0m installing libbsd-dev...\n"; sudo apt-get install -y libbsd-dev || printf "\r\033[31m[●]\033[0m failed to install libbsd-dev\n"; }
 	@make --no-print-directory -C ./minilibx/minilibx-linux > /dev/null && printf "\r\033[32m[●]\033[0m compiling and installing minilibx deps...\n"
