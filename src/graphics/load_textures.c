@@ -44,6 +44,7 @@ static void	load_texture_data(t_cub3d_data *data, t_texture *texture, char obj)
 {
 	char	*texture_route;
 
+	texture_route = NULL;
 	if (obj == 'N')
 		texture_route = data->graph_data->n_texture;
 	else if (obj == 'S')
