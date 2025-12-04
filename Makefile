@@ -69,15 +69,15 @@ ${MLX}:
 	@make --no-print-directory -C ./minilibx/minilibx-linux > /dev/null && printf "\r\033[32m[●]\033[0m compiling and installing minilibx deps...\n"
 
 $(OBJDIR)/%.o: src/%.c
-	@printf "\r\033[33m[●]\033[0m compiling cub3d..."
+	@printf "\r\033[33m[●]\033[0m compiling cub3D..."
 	@mkdir -p $(dir $@)
 	@${CC} ${STD_FLAGS} ${INC_FLAGS} -c $< -o $@ \
-	|| { printf "\n\033[31m[●]\033[0m Error: cub3d compilation failed!\n"; exit 1; }
+	|| { printf "\n\033[31m[●]\033[0m Error: cub3D compilation failed!\n"; exit 1; }
 
 ${NAME}: ${OBJS}
 	@${CC} ${OBJS} ${STD_FLAGS} ${MLX_FLAGS} ${LIBFT} -o ${NAME} \
-	|| { printf "\n\033[31m[●]\033[0m Error: cub3d compilation failed!\n"; exit 1; }
-	@printf "\r\033[32m[●]\033[0m compiling cub3d...\n"
+	|| { printf "\n\033[31m[●]\033[0m Error: cub3D compilation failed!\n"; exit 1; }
+	@printf "\r\033[32m[●]\033[0m compiling cub3D...\n"
 
 ${LIBFT}:
 	@printf "\r\033[33m[●]\033[0m compiling and linking libft..."	
@@ -93,7 +93,7 @@ clean:
 
 fclean:	clean
 	@printf "\r\033[33m[●]\033[0m removing executables..."
-	@rm -f cub3d
+	@rm -f cub3D
 	@rm -rf build
 	@make --no-print-directory fclean -C ./libft fclean > /dev/null 2>&1
 	@printf "\r\033[32m[●]\033[0m removing executables...\n"
