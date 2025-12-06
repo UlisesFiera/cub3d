@@ -27,7 +27,23 @@ static char	*alloc_number(void)
 	return (number);
 }
 
-void	initial_check(t_cub3d_data *data, char *color, int *index)
+static void	parse_number(t_cub3d_data *data, char *color, int *index)
+{
+	char	*number;
+	int		j;
+
+	j = 0;
+	if (color[*index] >= '0' && color[*index] <= '9')
+	{
+		number = alloc_number();
+		while (color[*index] >= '0' && color[*index] <= '9')
+			number[j++] = color[(*index)++];
+		set_color(number, SET_RGB, data);
+		free(number);
+	}
+}
+
+static void	initial_check(t_cub3d_data *data, char *color, int *index)
 {
 	set_color(NULL, RESET_RGB, data);
 	while (color[*index] == ' ')
@@ -38,29 +54,27 @@ void	initial_check(t_cub3d_data *data, char *color, int *index)
 
 int	parse_color(t_cub3d_data *data, char *color)
 {
-	char	*number;
+	int		counter;
 	int		i;
 	int		j;
 
+	counter = 0;
 	i = 0;
 	initial_check(data, color, &i);
 	while (color[i])
 	{
 		if (color[i] == ',')
+		{
 			i++;
+			counter++;
+		}
+		if (counter > 2)
+			invalid_char(color[i - 1], data);
 		if (!(color[i] >= '0' && color[i] <= '9'))
 			invalid_char(color[i], data);
 		j = 0;
 		if (color[i] >= '0' && color[i] <= '9')
-		{
-			number = alloc_number();
-			while (color[i] >= '0' && color[i] <= '9')
-				number[j++] = color[i++];
-			set_color(number, SET_RGB, data);
-			free(number);
-		}
-		else
-			i++;
+			parse_number(data, color, &i);
 	}
 	return (set_color(NULL, SET_COL, data));
 }
