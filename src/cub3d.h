@@ -232,6 +232,9 @@ void	draw_background(t_cub3d_data *data);
 void	load_textures(t_cub3d_data *data);
 void	assign_texture_to_sides(t_cub3d_data *data, int *side);
 int		get_tex_x(t_cub3d_data *data);
+int		reset_rgb(int *r, int *g, int *b);
+int		set_rgb(char *number, int *r, int *g, int *b);
+int		set_color(char *number, int opcode, t_cub3d_data *data);
 
 /* dda */
 void	ray_normalization(t_cub3d_data *data, int x);

@@ -12,61 +12,6 @@
 
 #include "cub3d.h"
 
-static int	reset_rgb(int *r, int *g, int *b)
-{
-	*r = -1;
-	*g = -1;
-	*b = -1;
-	return (0);
-}
-
-static int	set_rgb(char *number, int *r, int *g, int *b)
-{
-	if (*r == -1)
-	{
-		*r = ft_atoi(number);
-		if (*r > 255 || *r < 0)
-			return (-1);
-	}
-	else if (*g == -1)
-	{
-		*g = ft_atoi(number);
-		if (*g > 255 || *g < 0)
-			return (-1);
-	}
-	else if (*b == -1)
-	{
-		*b = ft_atoi(number);
-		if (*b > 255 || *b < 0)
-			return (-1);
-	}
-	return (0);
-}
-
-static int	set_color(char *number, int opcode, t_cub3d_data *data)
-{
-	static int	r = -1;
-	static int	g = -1;
-	static int	b = -1;
-	int			color;
-
-	if (opcode == SET_RGB)
-	{
-		if (set_rgb(number, &r, &g, &b) == -1)
-			bad_color(data, number);
-		return (0);
-	}
-	else if (opcode == SET_COL)
-	{
-		if (r == -1 || g == -1 || b == -1)
-			bad_color(data, number);
-		color = (r << 16) | (g << 8) | b;
-		return (color);
-	}
-	else
-		return (reset_rgb(&r, &g, &b));
-}
-
 static char	*alloc_number(void)
 {
 	char	*number;
@@ -82,6 +27,15 @@ static char	*alloc_number(void)
 	return (number);
 }
 
+void	initial_check(t_cub3d_data *data, char *color, int *index)
+{
+	set_color(NULL, RESET_RGB, data);
+	while (color[*index] == ' ')
+		(*index)++;
+	if (!(color[*index] >= '0' && color[*index] <= '9'))
+		invalid_char(color[*index], data);
+}
+
 int	parse_color(t_cub3d_data *data, char *color)
 {
 	char	*number;
@@ -89,11 +43,7 @@ int	parse_color(t_cub3d_data *data, char *color)
 	int		j;
 
 	i = 0;
-	set_color(NULL, RESET_RGB, data);
-	while (color[i] == ' ')
-		i++;
-	if (!(color[i] >= '0' && color[i] <= '9'))
-		invalid_char(color[i], data);
+	initial_check(data, color, &i);
 	while (color[i])
 	{
 		if (color[i] == ',')

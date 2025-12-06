@@ -12,6 +12,7 @@ INC_FLAGS   = 	-I./libft -I./minilibx/minilibx-linux -I./src	# include paths (no
 SRCS		= 	src/controls/triggers.c \
 				src/graphics/init_graphic.c \
 				src/graphics/parse_colors.c \
+				src/graphics/set_color.c \
 				src/graphics/load_textures.c \
 				src/graphics/dda_setup.c \
 				src/graphics/draw_background.c \
