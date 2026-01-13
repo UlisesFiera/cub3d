@@ -2,7 +2,10 @@
 
 A 3D renderer coded **in pure C** based on the *raytracing* technique capable of parsing textures and color.
 
+
+##
 ![not very fun, but works!](/assets/readme/cub0.jpg)
+
 
 ## Features
 
@@ -16,9 +19,12 @@ A 3D renderer coded **in pure C** based on the *raytracing* technique capable of
 		- 1s for walls
 		- N/S/E/W for player spawm
 
+
 ![example of valid map](/assets/readme/cub1.jpg)
 
+
 ![example of invalid map](/assets/readme/cub2.jpg)
+
 
 ## Considerations
 
