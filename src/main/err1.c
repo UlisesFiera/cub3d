@@ -71,7 +71,6 @@ void	exiterr(char *error_text, t_cub3d_data *data, int errcode)
 void	exitperror(t_cub3d_data *data, int errcode)
 {
 	printf("Error\n");
-	printf(RED_DOT);
 	if (errcode == ERR_OPEN)
 		perror("open");
 	free_data(data);
