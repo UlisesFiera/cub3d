@@ -2,13 +2,6 @@
 
 A 3D renderer coded **in pure C** based on the *raytracing* technique capable of parsing textures and color.
 
-<p style="font-size:12px; text-align:center;">not very fun, but works!</p>
-
-<div align="center", font-size=12px>
-  <p>not very fun, but works!</p>
-  <img src="assets/readme/cub0.jpg" alt="map" width="800"/>
-</div>
-
 ![not very fun, but works!](/assets/readme/cub0.jpg)
 
 ## Features
@@ -23,11 +16,7 @@ A 3D renderer coded **in pure C** based on the *raytracing* technique capable of
 		- 1s for walls
 		- N/S/E/W for player spawm
 
-<p style="font-size:12px; text-align:center;">example of valid</p>
-
 ![example of valid map](/assets/readme/cub1.jpg)
-
-<p style="font-size:12px; text-align:center;">example of invalid map</p>
 
 ![example of invalid map](/assets/readme/cub2.jpg)
 
