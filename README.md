@@ -4,9 +4,9 @@ A 3D renderer coded **in pure C** based on the *raytracing* technique capable of
 
 <p style="font-size:12px; text-align:center;">not very fun, but works!</p>
 
-<div align="center">
+<div align="center", font-size=12px>
   <p>not very fun, but works!</p>
-  <img src="assets/readme/cub0.jpg" alt="map" width="400"/>
+  <img src="assets/readme/cub0.jpg" alt="map" width="800"/>
 </div>
 
 ![not very fun, but works!](/assets/readme/cub0.jpg)
