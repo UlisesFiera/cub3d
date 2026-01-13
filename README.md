@@ -3,7 +3,6 @@
 A 3D renderer coded **in pure C** based on the *raytracing* technique capable of parsing textures and color.
 
 
-##
 ![not very fun, but works!](/assets/readme/cub0.jpg)
 
 
